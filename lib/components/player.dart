@@ -93,6 +93,7 @@ class Player extends SpriteAnimationGroupComponent
     horizontalMovement += isRightKey ? 1 : 0;
 
     //hasJumped = keysPressed.contains(LogicalKeyboardKey.space);
+
     if (event is RawKeyUpEvent &&
         event.logicalKey == LogicalKeyboardKey.space) {
       hasJumped = true;

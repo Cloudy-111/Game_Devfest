@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
 import 'package:flame/components.dart';
@@ -35,6 +36,7 @@ class JumpKing extends FlameGame
 
     if (showJoystick) {
       addJoyStick(); //hien thi bang dieu khien tren mobile
+      add(JumpButton());
     }
 
     return super.onLoad();

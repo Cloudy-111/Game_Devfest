@@ -20,7 +20,7 @@ class Player extends SpriteAnimationGroupComponent
   }) : super(position: position);
   //constructor nhan 1 chuoi, thuoc tinh position duoc ke thua tu lop cha
 
-  final double stepTime = 0.05; // la toc do game
+  final double stepTime = 0.05; // là tốc độ game
   late final SpriteAnimation idleAnimation;
   late final SpriteAnimation runningAnimation;
   late final SpriteAnimation jumpingAnimation;

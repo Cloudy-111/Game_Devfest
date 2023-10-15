@@ -28,7 +28,7 @@ class JumpKing extends FlameGame
     );
 
     cam = CameraComponent.withFixedResolution(
-        world: screen, width: 360, height: 640);
+        world: screen, width: 360, height: 800);
     cam.viewfinder.anchor = Anchor.topLeft;
     cam.priority = 0; //dat la lop duoi cung(z-index = 0)
     addAll([cam, screen]);

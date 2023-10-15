@@ -27,9 +27,19 @@ class JumpKing extends FlameGame
       levelName: 'level-portrait',
     );
 
+    // cam = CameraComponent.withFixedResolution(
+    //     world: screen, width: 360, height: 800);
+    // cam.viewfinder.anchor = Anchor.topLeft;
+
+    final gameResolution = Vector2(360, 800);
+
     cam = CameraComponent.withFixedResolution(
-        world: screen, width: 360, height: 800);
-    cam.viewfinder.anchor = Anchor.topLeft;
+      world: screen,
+      width: gameResolution.x,
+      height: gameResolution.y / 2,
+    );
+    cam.viewfinder.position = gameResolution / 2;
+
     cam.priority = 0; //dat la lop duoi cung(z-index = 0)
     addAll([cam, screen]);
     // add(Level());

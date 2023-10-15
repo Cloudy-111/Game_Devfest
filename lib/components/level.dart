@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-class Level extends World {
+class Level extends World with HasGameRef<JumpKing> {
   final String levelName;
   final Player player;
   Level({required this.levelName, required this.player});
@@ -19,6 +20,9 @@ class Level extends World {
     add(level);
 
     final spawnPointLayer = level.tileMap.getLayer<ObjectGroup>('SpawnPoint');
+
+    // Thêm camera bám theo nhân vật
+    _setupCamera();
 
     if (spawnPointLayer != null) {
       for (final spawnPoint in spawnPointLayer.objects) {
@@ -57,5 +61,9 @@ class Level extends World {
     }
     player.lstCollisionBlock = lstCollisionBlock;
     return super.onLoad();
+  }
+
+  void _setupCamera() {
+    gameRef.cam.follow(player, verticalOnly: true);
   }
 }

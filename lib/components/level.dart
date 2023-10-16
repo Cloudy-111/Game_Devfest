@@ -3,14 +3,23 @@ import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-class Level extends World with HasGameRef<JumpKing> {
+class Level extends World with ParentIsA<JumpKing> {
   final String levelName;
   final Player player;
   Level({required this.levelName, required this.player});
   late TiledComponent level;
   List<CollisionBlock> lstCollisionBlock = []; //dung de chua cac collitionBlock
+
+  bool isGameInit = false;
+
+  @override
+  void update(double dt) {
+    _updateCamera();
+    super.update(dt);
+  }
 
   @override
   FutureOr<void> onLoad() async {
@@ -20,9 +29,6 @@ class Level extends World with HasGameRef<JumpKing> {
     add(level);
 
     final spawnPointLayer = level.tileMap.getLayer<ObjectGroup>('SpawnPoint');
-
-    // Thêm camera bám theo nhân vật
-    _setupCamera();
 
     if (spawnPointLayer != null) {
       for (final spawnPoint in spawnPointLayer.objects) {
@@ -63,7 +69,19 @@ class Level extends World with HasGameRef<JumpKing> {
     return super.onLoad();
   }
 
-  void _setupCamera() {
-    gameRef.cam.follow(player, verticalOnly: true);
+  void _updateCamera() {
+    if (!isGameInit) {
+      parent.cam.moveTo(Vector2(
+          parent.gameResolution.x / 2,
+          parent.gameResolution.y -
+              (parent.gameResolution.y / parent.splitRate / 2)));
+      isGameInit = true;
+    }
+
+    if (player.velocity.y < 0 &&
+        parent.cam.viewfinder.position.y > player.position.y) {
+      parent.cam.moveTo(Vector2(parent.gameResolution.x / 2, player.position.y),
+          speed: 200);
+    }
   }
 }

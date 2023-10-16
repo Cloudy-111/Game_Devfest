@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level-portrait.tmx",
+    "activeFile": "level-portrait-2.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -20,8 +20,8 @@
             "scale": 1.9949999999999999,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 320.3007518796993,
-                "y": 184.4611528822055
+                "x": 336.8421052631579,
+                "y": 183.70927318295742
             }
         },
         "level-02.tmx": {
@@ -32,8 +32,20 @@
             "scale": 1.9949999999999999,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 320.3007518796993,
-                "y": 184.4611528822055
+                "x": 319.79949874686724,
+                "y": 183.70927318295742
+            }
+        },
+        "level-portrait-2.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 274,
+                "y": 418.66666666666663
             }
         },
         "level-portrait.tmx": {
@@ -42,16 +54,17 @@
                 2
             ],
             "scale": 1.5,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 175.33333333333331,
-                "y": 157.33333333333334
+                "x": 184,
+                "y": 319.66666666666663
             }
         }
     },
     "last.imagePath": "D:/My Computer/Code/Flutter/first_flutter_prj/assets/images/Terrain",
     "map.height": 40,
     "map.lastUsedFormat": "tmx",
+    "map.orientation": null,
     "map.tileHeight": 16,
     "map.tileWidth": 16,
     "map.width": 23,
@@ -60,19 +73,27 @@
         "level-01.tmx",
         "level-02.tmx",
         "JumpKing.tsx",
-        "level-portrait.tmx"
+        "level-portrait.tmx",
+        "level-portrait-2.tmx"
     ],
     "project": "JumpKingPortrait.tiled-project",
+    "property.type": "float",
     "recentFiles": [
         "JumpkingPortrait.tsx",
         "level-01.tmx",
         "level-02.tmx",
         "JumpKing.tsx",
-        "level-portrait.tmx"
+        "level-portrait.tmx",
+        "level-portrait-2.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
+    "tileset.margin": 0,
+    "tileset.spacing": 0,
     "tileset.tileSize": {
         "height": 16,
         "width": 16
-    }
+    },
+    "tileset.transparentColor": "#ff00ff",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
 }

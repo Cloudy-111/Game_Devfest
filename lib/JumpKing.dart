@@ -10,7 +10,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
 
 class JumpKing extends FlameGame
-    with HasKeyboardHandlerComponents, DragCallbacks {
+    with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection {
   //HasKeyboardHandlerComponents phai co de nhan dieu khien tu ban phim
   @override
   Color backgroundColor() => const Color(0xFF211F30);
@@ -24,7 +24,7 @@ class JumpKing extends FlameGame
     await images.loadAllImages();
     final screen = Level(
       player: player,
-      levelName: 'level-portrait',
+      levelName: 'level-portrait-2',
     );
 
     cam = CameraComponent.withFixedResolution(

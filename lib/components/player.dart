@@ -3,16 +3,22 @@ import 'dart:async';
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';
+import 'package:first_flutter_prj/components/saw.dart';
 import 'package:first_flutter_prj/components/utils.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
-enum PlayerState { idle, running, jumping, falling } // trang thai cua player
+enum PlayerState {
+  idle,
+  running,
+  jumping,
+  falling,
+  disappearing
+} // trang thai cua player
 
 class Player extends SpriteAnimationGroupComponent
-    with HasGameRef<JumpKing>, KeyboardHandler {
+    with HasGameRef<JumpKing>, KeyboardHandler, CollisionCallbacks {
   String character;
   Player({
     position,
@@ -25,11 +31,12 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation runningAnimation;
   late final SpriteAnimation jumpingAnimation;
   late final SpriteAnimation fallingAnimation;
+  late final SpriteAnimation disappearingAnimation;
   DateTime? pressTime;
   int dur = 1;
 
-  final double _gravity = 10;
-  final double _limitVelocityPositive = 1000;
+  final double _gravity = 15;
+  final double _limitVelocityPositive = 100000;
   final double _limitVelocityNegative = 400;
   final double _jumpForce = 100;
   bool isOnGround = false;
@@ -38,6 +45,7 @@ class Player extends SpriteAnimationGroupComponent
   double horizontalMovement = 0;
   double moveSpeed = 100;
   Vector2 velocity = Vector2.zero();
+  Vector2 startingPosition = Vector2.zero();
   List<CollisionBlock> lstCollisionBlock = [];
   PlayerHitbox hitbox = PlayerHitbox(
     offsetX: 10,
@@ -46,23 +54,11 @@ class Player extends SpriteAnimationGroupComponent
     height: 28,
   );
 
-  void startSpaceHold() {
-    pressTime = DateTime.now();
-  }
-
-  int endSpaceHold() {
-    if (pressTime != null) {
-      DateTime endTime = DateTime.now();
-      Duration duration = endTime.difference(pressTime!);
-      return duration.inMilliseconds;
-    }
-    return 0; // Trường hợp không có sự kiện nhấn giữ Space
-  }
-
   @override
   FutureOr<void> onLoad() {
     _loadAllAnimation(); // _method tuc method la private
     debugMode = false;
+    startingPosition = Vector2(position.x, position.y);
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height),
@@ -79,6 +75,13 @@ class Player extends SpriteAnimationGroupComponent
     _applyGravity(dt);
     _checkVerticalCollision();
     super.update(dt);
+  }
+
+  @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is Saw) _stop();
+    super.onCollisionStart(intersectionPoints, other);
   }
 
   @override
@@ -130,12 +133,15 @@ class Player extends SpriteAnimationGroupComponent
     //jumpingAnimation
     jumpingAnimation = _spriteAnimation('Jump', 1);
 
+    disappearingAnimation = _specialSpriteAnimation('Desappearing', 7);
+
     // tao cac animations
     animations = {
       PlayerState.idle: idleAnimation,
       PlayerState.running: runningAnimation,
       PlayerState.jumping: jumpingAnimation,
       PlayerState.falling: fallingAnimation,
+      PlayerState.disappearing: disappearingAnimation,
     }; //object animations hien tai la 1 phan tu trong enum co gia tri bang idleAnimation
 
     // dat animation hien tai
@@ -167,7 +173,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _playerJump(double dt) {
-    velocity.y = -_jumpForce * (dur / 500 > 1 ? dur / 500 : 1);
+    velocity.y = -_jumpForce * (dur / 250 > 1 ? dur / 250 : 1);
     position.y += velocity.y * dt;
     isOnGround = false;
     hasJumped = false;
@@ -243,5 +249,25 @@ class Player extends SpriteAnimationGroupComponent
         }
       }
     }
+  }
+
+  void _stop() async {
+    //position = startingPosition;
+    Saw.moveSpeed = 0;
+    current = PlayerState.disappearing;
+    velocity = Vector2.zero();
+    print('Falied');
+  }
+
+  SpriteAnimation _specialSpriteAnimation(String state, int amount) {
+    return SpriteAnimation.fromFrameData(
+      game.images.fromCache('Main Characters/$state (96x96).png'),
+      SpriteAnimationData.sequenced(
+        amount: amount,
+        stepTime: stepTime,
+        textureSize: Vector2.all(96),
+        loop: false,
+      ),
+    );
   }
 }

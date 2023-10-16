@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/player.dart';
+import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
@@ -18,6 +19,13 @@ class Level extends World {
 
     add(level);
 
+    _spawningObject();
+    _addCollision();
+
+    return super.onLoad();
+  }
+
+  void _spawningObject() {
     final spawnPointLayer = level.tileMap.getLayer<ObjectGroup>('SpawnPoint');
 
     if (spawnPointLayer != null) {
@@ -27,11 +35,22 @@ class Level extends World {
             player.position = Vector2(spawnPoint.x, spawnPoint.y);
             add(player);
             break;
+          case 'Saw':
+            final offGoUp = spawnPoint.properties.getValue('offGoUp');
+            final saw = Saw(
+              offGoUp: offGoUp,
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+            );
+            add(saw);
+            break;
           default:
         }
       }
     }
+  }
 
+  void _addCollision() {
     final collisionLayer = level.tileMap.getLayer<ObjectGroup>('Collision');
 
     if (collisionLayer != null) {
@@ -56,6 +75,5 @@ class Level extends World {
       }
     }
     player.lstCollisionBlock = lstCollisionBlock;
-    return super.onLoad();
   }
 }

@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:ui';
+import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-class Level extends World {
+class Level extends World with HasGameRef<JumpKing> {
   final String levelName;
   final Player player;
   Level({required this.levelName, required this.player});
@@ -18,7 +21,7 @@ class Level extends World {
         '$levelName.tmx', Vector2.all(16)); //kich co moi o cua man hinh game
 
     add(level);
-
+    _setupCamera();
     _spawningObject();
     _addCollision();
 
@@ -75,5 +78,15 @@ class Level extends World {
       }
     }
     player.lstCollisionBlock = lstCollisionBlock;
+  }
+
+  void _setupCamera() {
+    gameRef.cam.follow(player);
+    gameRef.cam.setBounds(Rectangle.fromLTRB(
+      gameRef.gameResolution.x / 2,
+      gameRef.gameResolution.y / 2,
+      level.width - gameRef.gameResolution.x / 2,
+      level.height - gameRef.gameResolution.y / 2,
+    ));
   }
 }

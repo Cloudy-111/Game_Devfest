@@ -17,7 +17,7 @@ class Saw extends SpriteAnimationComponent
           size: size,
         );
   static const stepTime = 0.1;
-  static int moveSpeed = 17;
+  static int moveSpeed = 0;
 
   static Vector2 startingPosition = Vector2.zero();
 

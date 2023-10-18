@@ -15,21 +15,26 @@ class JumpKing extends FlameGame
   @override
   Color backgroundColor() => const Color(0xFF211F30);
   late CameraComponent cam;
-  Player player = Player(character: 'Virtual Guy');
+  Player player = Player(character: 'SonTinh');
   late JoystickComponent joyStick;
   bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
+
+  final gameResolution = Vector2(368, 640);
 
   @override
   FutureOr<void> onLoad() async {
     await images.loadAllImages();
     final screen = Level(
       player: player,
-      levelName: 'level-portrait-2',
+      levelName: 'level-portrait-soooolong',
     );
 
     cam = CameraComponent.withFixedResolution(
-        world: screen, width: 360, height: 640);
-    cam.viewfinder.anchor = Anchor.topLeft;
+      world: screen,
+      width: gameResolution.x,
+      height: gameResolution.y,
+    );
+    //cam.viewfinder.anchor = Anchor.topLeft;
     cam.priority = 0; //dat la lop duoi cung(z-index = 0)
     addAll([cam, screen]);
     // add(Level());

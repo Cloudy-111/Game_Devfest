@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level-portrait-2.tmx",
+    "activeFile": "level-portrait-soooolong.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -26,8 +26,8 @@
         },
         "level-02.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.9949999999999999,
             "selectedLayer": 1,
@@ -38,20 +38,44 @@
         },
         "level-portrait-2.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 270.66666666666663,
-                "y": 414
+                "x": 184,
+                "y": 319.66666666666663
+            }
+        },
+        "level-portrait-solong.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 517.5,
+                "y": 658
+            }
+        },
+        "level-portrait-soooolong.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 125.5,
+                "y": 3626
             }
         },
         "level-portrait.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 1,
@@ -62,7 +86,7 @@
         }
     },
     "last.imagePath": "D:/My Computer/Code/Flutter/first_flutter_prj/assets/images/Terrain",
-    "map.height": 40,
+    "map.height": 100,
     "map.lastUsedFormat": "tmx",
     "map.orientation": null,
     "map.tileHeight": 16,
@@ -74,7 +98,9 @@
         "level-02.tmx",
         "JumpKing.tsx",
         "level-portrait.tmx",
-        "level-portrait-2.tmx"
+        "level-portrait-2.tmx",
+        "level-portrait-solong.tmx",
+        "level-portrait-soooolong.tmx"
     ],
     "project": "JumpKingPortrait.tiled-project",
     "property.type": "float",
@@ -84,7 +110,9 @@
         "level-02.tmx",
         "JumpKing.tsx",
         "level-portrait.tmx",
-        "level-portrait-2.tmx"
+        "level-portrait-2.tmx",
+        "level-portrait-solong.tmx",
+        "level-portrait-soooolong.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,

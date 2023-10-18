@@ -43,6 +43,7 @@ class Player extends SpriteAnimationGroupComponent
   bool hasJumped = false;
   bool hasFall = false;
   bool hasPressSpace = false;
+  bool hasDie = false;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -267,6 +268,7 @@ class Player extends SpriteAnimationGroupComponent
     //Saw.moveSpeed = 0;
     //current = PlayerState.disappearing;
     velocity = Vector2.zero();
+    hasDie = true;
     print('Falied');
   }
 

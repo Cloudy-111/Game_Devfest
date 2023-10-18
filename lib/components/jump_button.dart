@@ -26,6 +26,8 @@ class JumpButton extends SpriteComponent
   void onTapDown(TapDownEvent event) {
     game.player.pressTime ??= DateTime.now();
     game.player.hasJumped = false;
+    game.player.hasPressSpace = true;
+    game.player.hasFall = false;
     super.onTapDown(event);
   }
 
@@ -35,6 +37,8 @@ class JumpButton extends SpriteComponent
     DateTime end = DateTime.now();
     game.player.dur = end.difference(game.player.pressTime!).inMilliseconds;
     game.player.pressTime = null;
+    game.player.hasPressSpace = false;
+    game.player.hasJumped = true;
     super.onTapUp(event);
   }
 }

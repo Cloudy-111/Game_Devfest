@@ -45,7 +45,7 @@
 113,139,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,140,141,111
 </data>
  </layer>
- <objectgroup id="2" name="SpawnPoint" visible="0">
+ <objectgroup id="2" name="SpawnPoint">
   <object id="1" name="Player" type="Player" x="16" y="448" width="32" height="32"/>
   <object id="29" type="Saw" x="16" y="544" width="336" height="32">
    <properties>

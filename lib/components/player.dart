@@ -16,7 +16,7 @@ class Player extends SpriteAnimationGroupComponent
   String character;
   Player({
     position,
-    this.character = 'Pink Man',
+    this.character = 'Son_Tinh',
   }) : super(position: position);
   //constructor nhan 1 chuoi, thuoc tinh position duoc ke thua tu lop cha
 

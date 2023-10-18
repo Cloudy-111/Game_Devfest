@@ -19,8 +19,7 @@ class JumpKing extends FlameGame
   late JoystickComponent joyStick;
   bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
 
-  final gameResolution = Vector2(360, 800);
-  final splitRate = 2.5;
+  final gameResolution = Vector2(368, 640);
 
   @override
   FutureOr<void> onLoad() async {
@@ -33,7 +32,7 @@ class JumpKing extends FlameGame
     cam = CameraComponent.withFixedResolution(
       world: screen,
       width: gameResolution.x,
-      height: gameResolution.y / splitRate,
+      height: gameResolution.y,
     );
 
     cam.priority = 0; //dat la lop duoi cung(z-index = 0)

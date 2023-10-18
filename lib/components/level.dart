@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/player.dart';
@@ -6,20 +7,13 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-class Level extends World with ParentIsA<JumpKing> {
+class Level extends World with HasGameRef<JumpKing> {
   final String levelName;
   final Player player;
   Level({required this.levelName, required this.player});
+
   late TiledComponent level;
   List<CollisionBlock> lstCollisionBlock = []; //dung de chua cac collitionBlock
-
-  bool isGameInit = false;
-
-  @override
-  void update(double dt) {
-    _updateCamera();
-    super.update(dt);
-  }
 
   @override
   FutureOr<void> onLoad() async {
@@ -29,6 +23,8 @@ class Level extends World with ParentIsA<JumpKing> {
     add(level);
 
     final spawnPointLayer = level.tileMap.getLayer<ObjectGroup>('SpawnPoint');
+
+    _setupCamera();
 
     if (spawnPointLayer != null) {
       for (final spawnPoint in spawnPointLayer.objects) {
@@ -69,19 +65,14 @@ class Level extends World with ParentIsA<JumpKing> {
     return super.onLoad();
   }
 
-  void _updateCamera() {
-    if (!isGameInit) {
-      parent.cam.moveTo(Vector2(
-          parent.gameResolution.x / 2,
-          parent.gameResolution.y -
-              (parent.gameResolution.y / parent.splitRate / 2)));
-      isGameInit = true;
-    }
+  void _setupCamera() {
+    gameRef.cam.follow(player);
 
-    if (player.velocity.y < 0 &&
-        parent.cam.viewfinder.position.y > player.position.y) {
-      parent.cam.moveTo(Vector2(parent.gameResolution.x / 2, player.position.y),
-          speed: 200);
-    }
+    gameRef.cam.setBounds(Rectangle.fromLTRB(
+      gameRef.gameResolution.x / 2,
+      gameRef.gameResolution.y / 2,
+      level.width - gameRef.gameResolution.x / 2,
+      level.height - gameRef.gameResolution.y / 2,
+    ));
   }
 }

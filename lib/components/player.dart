@@ -6,6 +6,7 @@ import 'package:first_flutter_prj/components/player_hitbox.dart';
 import 'package:first_flutter_prj/components/utils.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 

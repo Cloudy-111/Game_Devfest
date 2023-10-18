@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/tiles/
     - assets/images/Terrain/
+    - assets/images/Other/
     - assets/images/Traps/Saw/
     - assets/images/Traps/Platforms/
     - assets/images/HUD/

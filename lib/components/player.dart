@@ -41,6 +41,8 @@ class Player extends SpriteAnimationGroupComponent
   final double _jumpForce = 100;
   bool isOnGround = false;
   bool hasJumped = false;
+  bool hasFall = false;
+  bool hasPressSpace = false;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -100,6 +102,7 @@ class Player extends SpriteAnimationGroupComponent
     if (event is RawKeyUpEvent &&
         event.logicalKey == LogicalKeyboardKey.space) {
       hasJumped = true;
+      hasPressSpace = false;
       // Người dùng đã nhả phím Space
       print("Thời gian nhấn Space: $pressTime ms");
       DateTime end = DateTime.now();
@@ -115,6 +118,9 @@ class Player extends SpriteAnimationGroupComponent
         pressTime == null) {
       // Người dùng đã nhấn phím Space
       pressTime = DateTime.now();
+      hasFall = false;
+      hasJumped = false;
+      hasPressSpace = true;
     }
 
     return super.onKeyEvent(event, keysPressed);
@@ -162,7 +168,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _updateMovementPlayer(double dt) {
-    if (hasJumped && isOnGround) _playerJump(dt);
+    if (hasJumped && isOnGround && !hasFall) _playerJump(dt);
 
     //if (velocity.y > _gravity) isOnGround = true;
 
@@ -177,6 +183,7 @@ class Player extends SpriteAnimationGroupComponent
     position.y += velocity.y * dt;
     isOnGround = false;
     hasJumped = false;
+    hasFall = false;
   }
 
   void _updatePlayerState() {
@@ -190,7 +197,11 @@ class Player extends SpriteAnimationGroupComponent
     if (velocity.x != 0 || horizontalMovement != 0)
       playerState = PlayerState.running;
 
-    if (velocity.y > 0) playerState = PlayerState.falling;
+    if (velocity.y > 0) {
+      playerState = PlayerState.falling;
+      hasFall = true;
+      isOnGround = false;
+    }
     if (velocity.y < 0) playerState = PlayerState.jumping;
     current = playerState;
   }
@@ -252,9 +263,9 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _stop() async {
-    //position = startingPosition;
-    Saw.moveSpeed = 0;
-    current = PlayerState.disappearing;
+    position = startingPosition;
+    //Saw.moveSpeed = 0;
+    //current = PlayerState.disappearing;
     velocity = Vector2.zero();
     print('Falied');
   }

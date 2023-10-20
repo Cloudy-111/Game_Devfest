@@ -8,6 +8,7 @@ import 'package:first_flutter_prj/components/level.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class JumpKing extends FlameGame
@@ -31,7 +32,6 @@ class JumpKing extends FlameGame
       levelName: 'level-1',
       goal: goal,
     );
-
     cam = CameraComponent.withFixedResolution(
       world: screen,
       width: gameResolution.x,
@@ -46,7 +46,7 @@ class JumpKing extends FlameGame
       addJoyStick(); //hien thi bang dieu khien tren mobile
       add(JumpButton());
     }
-
+    // gameOverlay
     return super.onLoad();
   }
 
@@ -104,5 +104,13 @@ class JumpKing extends FlameGame
 
   void onWin() {
     overlays.add('winOverlay');
+  }
+
+  void togglePauseState() {
+    if (paused) {
+      resumeEngine();
+    } else {
+      pauseEngine();
+    }
   }
 }

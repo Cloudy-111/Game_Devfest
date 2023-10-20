@@ -9,7 +9,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.fullScreen();
   //await Flame.device.setLandscape();
-
   // JumpKing game = JumpKing(); //hàm khởi tạo trong OOP
   // runApp(GameWidget(game: kDebugMode ? JumpKing() : game));
   runApp(MaterialApp(

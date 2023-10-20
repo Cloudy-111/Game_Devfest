@@ -31,13 +31,18 @@ class MoveBlock extends CollisionBlock {
   double moveDirection = 1;
   double rangeNeg = 0;
   double rangePos = 0;
-  static bool isHorizontal = false;
+  bool isHorizontal = false;
 
   static Vector2 startingPosition = Vector2.zero();
 
   @override
   FutureOr<void> onLoad() {
     add(RectangleHitbox());
+    if (!isVertical) {
+      isHorizontal = true;
+    } else {
+      isHorizontal = false;
+    }
     priority = 0;
     startingPosition = Vector2(position.x, position.y);
     if (!isStatic) {

@@ -47,11 +47,11 @@ class Saw extends SpriteAnimationComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Player) _stop();
+    if (other is Player) _respawn();
     super.onCollisionStart(intersectionPoints, other);
   }
 
-  void _stop() {
+  void _respawn() {
     position = startingPosition;
   }
 }

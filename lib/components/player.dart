@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
+import 'package:first_flutter_prj/components/level.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';
 import 'package:first_flutter_prj/components/saw.dart';
@@ -62,10 +63,12 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
-    if (MoveBlock.isHorizontal)
+    MoveBlock sample = MoveBlock();
+    if (sample.isHorizontal) {
       hasStandMoveHorizontalPlatform = true;
-    else
+    } else {
       hasStandMoveVerticalPlatform = true;
+    }
     priority = 2;
     _loadAllAnimation(); // _method tuc method la private
     debugMode = false;
@@ -91,18 +94,7 @@ class Player extends SpriteAnimationGroupComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Saw) _stop();
-    if (other is MoveBlock) {
-      // print('RangeNeg: ' +
-      //     MoveBlock.rangeNeg.toString() +
-      //     'RangePos: ' +
-      //     MoveBlock.rangePos.toString());
-      if (MoveBlock.isHorizontal) {
-        hasStandMoveHorizontalPlatform = true;
-        print('Horixontal');
-      } else
-        hasStandMoveVerticalPlatform = true;
-    }
+    if (other is Saw) _respawn();
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -197,6 +189,7 @@ class Player extends SpriteAnimationGroupComponent
     // if (hasStandMoveHorizontalPlatform) {
     //   velocity.x += 25 * MoveBlock.moveDirection;
     // }
+    MoveBlock sample = MoveBlock();
     position.x += velocity.x *
         dt; //vi tri moi = velocity * deltaTime (la 1 vector2, the hien toa do cua object)
   }
@@ -219,10 +212,11 @@ class Player extends SpriteAnimationGroupComponent
     }
 
     if (hasStandMoveVerticalPlatform) {
-      if (velocity.x != 0)
+      if (velocity.x != 0) {
         playerState = PlayerState.running;
-      else
+      } else {
         playerState = PlayerState.idle;
+      }
     }
 
     if (velocity.x != 0 && velocity.y == 0) {
@@ -303,7 +297,7 @@ class Player extends SpriteAnimationGroupComponent
     }
   }
 
-  void _stop() async {
+  void _respawn() async {
     position = startingPosition;
     //Saw.moveSpeed = 0;
     //current = PlayerState.disappearing;

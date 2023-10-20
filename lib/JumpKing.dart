@@ -26,7 +26,7 @@ class JumpKing extends FlameGame
     await images.loadAllImages();
     final screen = Level(
       player: player,
-      levelName: 'level-portrait-soooolong',
+      levelName: 'level-1',
     );
 
     cam = CameraComponent.withFixedResolution(

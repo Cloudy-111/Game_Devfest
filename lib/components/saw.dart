@@ -17,13 +17,13 @@ class Saw extends SpriteAnimationComponent
           size: size,
         );
   static const stepTime = 0.1;
-  static int moveSpeed = 0;
+  static int moveSpeed = 17;
 
   static Vector2 startingPosition = Vector2.zero();
 
   @override
   FutureOr<void> onLoad() {
-    priority = 0;
+    priority = 1;
     add(RectangleHitbox());
     debugMode = false;
     startingPosition = Vector2(position.x, position.y);

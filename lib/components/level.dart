@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
+import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/components.dart';
@@ -64,6 +65,24 @@ class Level extends World with HasGameRef<JumpKing> {
                 position: Vector2(collision.x, collision.y),
                 size: Vector2(collision.width, collision.height),
                 isPlatform: true);
+            lstCollisionBlock.add(platform);
+            add(platform);
+            break;
+          case 'movePlatform':
+            final isStatic = collision.properties.getValue('isStatic');
+            final isVertical = collision.properties.getValue('isVertical');
+            final offNeg = collision.properties.getValue('offNeg');
+            final offPos = collision.properties.getValue('offPos');
+            //final moveSpeed = collision.properties.getValue('moveSpeed');
+            final platform = MoveBlock(
+              position: Vector2(collision.x, collision.y),
+              size: Vector2(collision.width, collision.height),
+              isVertical: isVertical,
+              isStatic: isStatic,
+              offNeg: offNeg,
+              offPos: offPos,
+              //moveSpeed: moveSpeed,
+            );
             lstCollisionBlock.add(platform);
             add(platform);
             break;

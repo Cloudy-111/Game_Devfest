@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
+import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:first_flutter_prj/components/utils.dart';
@@ -44,6 +45,8 @@ class Player extends SpriteAnimationGroupComponent
   bool hasFall = false;
   bool hasPressSpace = false;
   bool hasDie = false;
+  bool hasStandMoveHorizontalPlatform = false;
+  bool hasStandMoveVerticalPlatform = false;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -59,6 +62,11 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
+    if (MoveBlock.isHorizontal)
+      hasStandMoveHorizontalPlatform = true;
+    else
+      hasStandMoveVerticalPlatform = true;
+    priority = 2;
     _loadAllAnimation(); // _method tuc method la private
     debugMode = false;
     startingPosition = Vector2(position.x, position.y);
@@ -84,6 +92,17 @@ class Player extends SpriteAnimationGroupComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Saw) _stop();
+    if (other is MoveBlock) {
+      // print('RangeNeg: ' +
+      //     MoveBlock.rangeNeg.toString() +
+      //     'RangePos: ' +
+      //     MoveBlock.rangePos.toString());
+      if (MoveBlock.isHorizontal) {
+        hasStandMoveHorizontalPlatform = true;
+        print('Horixontal');
+      } else
+        hasStandMoveVerticalPlatform = true;
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -102,6 +121,7 @@ class Player extends SpriteAnimationGroupComponent
 
     if (event is RawKeyUpEvent &&
         event.logicalKey == LogicalKeyboardKey.space) {
+      //hasFall = false;
       hasJumped = true;
       hasPressSpace = false;
       // Người dùng đã nhả phím Space
@@ -172,9 +192,11 @@ class Player extends SpriteAnimationGroupComponent
     if (hasJumped && isOnGround && !hasFall) _playerJump(dt);
 
     //if (velocity.y > _gravity) isOnGround = true;
-
     velocity.x = horizontalMovement *
         moveSpeed; //van toc cua object(+ hay - la di sang trai hoac phai)
+    // if (hasStandMoveHorizontalPlatform) {
+    //   velocity.x += 25 * MoveBlock.moveDirection;
+    // }
     position.x += velocity.x *
         dt; //vi tri moi = velocity * deltaTime (la 1 vector2, the hien toa do cua object)
   }
@@ -188,6 +210,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _updatePlayerState() {
+    // if (velocity.y != 0) print(velocity.y);
     PlayerState playerState = PlayerState.idle;
     if (velocity.x < 0 && scale.x > 0) {
       flipHorizontallyAroundCenter();
@@ -195,15 +218,32 @@ class Player extends SpriteAnimationGroupComponent
       flipHorizontallyAroundCenter();
     }
 
-    if (velocity.x != 0 || horizontalMovement != 0)
-      playerState = PlayerState.running;
+    if (hasStandMoveVerticalPlatform) {
+      if (velocity.x != 0)
+        playerState = PlayerState.running;
+      else
+        playerState = PlayerState.idle;
+    }
 
-    if (velocity.y > 0) {
+    if (velocity.x != 0 && velocity.y == 0) {
+      playerState = PlayerState.running;
+    }
+    if (velocity.y == 0) {
+      isOnGround = true;
+      // hasStandMoveVerticalPlatform = false;
+    }
+
+    if (velocity.y > 0 && !isOnGround) {
       playerState = PlayerState.falling;
       hasFall = true;
-      isOnGround = false;
+      hasStandMoveHorizontalPlatform = false;
+      // isOnGround = false;
     }
-    if (velocity.y < 0) playerState = PlayerState.jumping;
+    if (velocity.y < 0) {
+      playerState = PlayerState.jumping;
+      hasStandMoveVerticalPlatform = false;
+      hasStandMoveHorizontalPlatform = false;
+    }
     current = playerState;
   }
 

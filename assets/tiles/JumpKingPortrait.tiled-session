@@ -3,12 +3,13 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level-portrait-soooolong.tmx",
+    "activeFile": "level-1.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "fileStates": {
         "JumpKing.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
@@ -20,44 +21,56 @@
             "scale": 1.9949999999999999,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 336.8421052631579,
-                "y": 183.70927318295742
+                "x": 319.0476190476191,
+                "y": 183.4586466165414
             }
         },
         "level-02.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1.9949999999999999,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 319.79949874686724,
-                "y": 183.70927318295742
+                "x": 319.0476190476191,
+                "y": 183.4586466165414
             }
         },
-        "level-portrait-2.tmx": {
+        "level-1.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 184,
-                "y": 319.66666666666663
+                "x": 182.66666666666666,
+                "y": 2674
+            }
+        },
+        "level-portrait-2.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 183.66666666666663,
+                "y": 319.6666666666667
             }
         },
         "level-portrait-solong.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 517.5,
-                "y": 658
+                "x": 176,
+                "y": 621
             }
         },
         "level-portrait-soooolong.tmx": {
@@ -66,27 +79,27 @@
                 2
             ],
             "scale": 1,
-            "selectedLayer": 2,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 125.5,
-                "y": 3626
+                "x": 183.5,
+                "y": 1999.5
             }
         },
         "level-portrait.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
             "scale": 1.5,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 184,
-                "y": 319.66666666666663
+                "x": 183.66666666666663,
+                "y": 319.6666666666667
             }
         }
     },
     "last.imagePath": "D:/My Computer/Code/Flutter/first_flutter_prj/assets/images/Terrain",
-    "map.height": 100,
+    "map.height": 300,
     "map.lastUsedFormat": "tmx",
     "map.orientation": null,
     "map.tileHeight": 16,
@@ -94,25 +107,23 @@
     "map.width": 23,
     "openFiles": [
         "JumpkingPortrait.tsx",
-        "level-01.tmx",
-        "level-02.tmx",
-        "JumpKing.tsx",
         "level-portrait.tmx",
         "level-portrait-2.tmx",
-        "level-portrait-solong.tmx",
+        "level-1.tmx",
         "level-portrait-soooolong.tmx"
     ],
     "project": "JumpKingPortrait.tiled-project",
-    "property.type": "float",
+    "property.type": "bool",
     "recentFiles": [
+        "level-1.tmx",
         "JumpkingPortrait.tsx",
-        "level-01.tmx",
-        "level-02.tmx",
-        "JumpKing.tsx",
         "level-portrait.tmx",
         "level-portrait-2.tmx",
+        "level-portrait-soooolong.tmx",
         "level-portrait-solong.tmx",
-        "level-portrait-soooolong.tmx"
+        "level-02.tmx",
+        "level-01.tmx",
+        "JumpKing.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.margin": 0,

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/Goal.dart';
+import 'package:first_flutter_prj/components/StartScreen.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/level.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
@@ -24,10 +25,12 @@ class Player extends SpriteAnimationGroupComponent
     with HasGameRef<JumpKing>, KeyboardHandler, CollisionCallbacks {
   String character;
   int attemps;
+  bool isWin;
   Player({
     position,
     this.character = 'Pink Man',
     this.attemps = 1,
+    this.isWin = false,
   }) : super(position: position);
   //constructor nhan 1 chuoi, thuoc tinh position duoc ke thua tu lop cha
 
@@ -100,10 +103,16 @@ class Player extends SpriteAnimationGroupComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Saw) {
+      (game as JumpKing).onLose();
       _respawn();
       increaseAttemp();
     }
-    if (other is Goal) print('WIN!!!');
+    if (other is Goal) {
+      (game as JumpKing).onWin();
+      StartScreen();
+      _respawn();
+      print('WIN!!!');
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -198,7 +207,6 @@ class Player extends SpriteAnimationGroupComponent
     // if (hasStandMoveHorizontalPlatform) {
     //   velocity.x += 25 * MoveBlock.moveDirection;
     // }
-    MoveBlock sample = MoveBlock();
     position.x += velocity.x *
         dt; //vi tri moi = velocity * deltaTime (la 1 vector2, the hien toa do cua object)
   }

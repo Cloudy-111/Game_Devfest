@@ -55,6 +55,8 @@ class Level extends World with HasGameRef<JumpKing> {
             );
             add(saw);
             break;
+          case 'ThuyTinh':
+            break;
           case 'Goal':
             goal.position = Vector2(spawnPoint.x, spawnPoint.y);
             add(goal);

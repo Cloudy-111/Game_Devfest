@@ -8,6 +8,7 @@ import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
+import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -113,5 +114,18 @@ class JumpKing extends FlameGame
 
   String _updateAttemp() {
     return Player().attemps.toString();
+  }
+
+  void onLose() {
+    overlays.add('gameOverOverlay');
+  }
+
+  void resetGame() {
+    overlays.remove('winOverlay');
+    overlays.remove('gameOverOverlay');
+  }
+
+  void onWin() {
+    overlays.add('winOverlay');
   }
 }

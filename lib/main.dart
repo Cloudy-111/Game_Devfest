@@ -1,4 +1,5 @@
 import 'package:first_flutter_prj/JumpKing.dart';
+import 'package:first_flutter_prj/components/StartScreen.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/foundation.dart';
@@ -9,6 +10,9 @@ void main() async {
   await Flame.device.fullScreen();
   //await Flame.device.setLandscape();
 
-  JumpKing game = JumpKing(); //hàm khởi tạo trong OOP
-  runApp(GameWidget(game: kDebugMode ? JumpKing() : game));
+  // JumpKing game = JumpKing(); //hàm khởi tạo trong OOP
+  // runApp(GameWidget(game: kDebugMode ? JumpKing() : game));
+  runApp(MaterialApp(
+    home: StartScreen(),
+  ));
 }

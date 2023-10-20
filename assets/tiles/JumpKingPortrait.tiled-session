@@ -113,7 +113,7 @@
         "level-portrait-soooolong.tmx"
     ],
     "project": "JumpKingPortrait.tiled-project",
-    "property.type": "bool",
+    "property.type": "float",
     "recentFiles": [
         "JumpkingPortrait.tsx",
         "level-portrait.tmx",

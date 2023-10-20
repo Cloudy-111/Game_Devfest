@@ -19,6 +19,7 @@ class Saw extends SpriteAnimationComponent
   static const stepTime = 0.1;
   static int moveSpeed = 17;
   bool isGameInit = false;
+  bool isWin = false;
 
   static Vector2 startingPosition = Vector2.zero();
 
@@ -49,7 +50,10 @@ class Saw extends SpriteAnimationComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Player) _respawn();
+    if (other is Player) {
+      (game as JumpKing).onLose();
+      _respawn();
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 

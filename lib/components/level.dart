@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:first_flutter_prj/JumpKing.dart';
+import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player.dart';
@@ -12,7 +13,12 @@ import 'package:flame_tiled/flame_tiled.dart';
 class Level extends World with HasGameRef<JumpKing> {
   final String levelName;
   final Player player;
-  Level({required this.levelName, required this.player});
+  final Goal goal;
+  Level({
+    required this.levelName,
+    required this.player,
+    required this.goal,
+  });
   late TiledComponent level;
   List<CollisionBlock> lstCollisionBlock = []; //dung de chua cac collitionBlock
 
@@ -47,6 +53,10 @@ class Level extends World with HasGameRef<JumpKing> {
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
             add(saw);
+            break;
+          case 'Goal':
+            goal.position = Vector2(spawnPoint.x, spawnPoint.y);
+            add(goal);
             break;
           default:
         }

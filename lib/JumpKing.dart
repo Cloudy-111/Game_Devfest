@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:ui';
 
+import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
@@ -16,6 +17,7 @@ class JumpKing extends FlameGame
   Color backgroundColor() => const Color(0xFF211F30);
   late CameraComponent cam;
   Player player = Player(character: 'SonTinh');
+  Goal goal = Goal(character: 'Virtual Guy');
   late JoystickComponent joyStick;
   bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
 
@@ -27,6 +29,7 @@ class JumpKing extends FlameGame
     final screen = Level(
       player: player,
       levelName: 'level-1',
+      goal: goal,
     );
 
     cam = CameraComponent.withFixedResolution(

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="211">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="212">
  <tileset firstgid="1" source="JumpkingPortrait.tsx"/>
  <layer id="1" name="Tile Layer 1" width="23" height="300">
   <data encoding="csv">
@@ -725,11 +725,12 @@
   <object id="210" type="Platform" x="303.5" y="1247.75" width="17" height="16.5"/>
  </objectgroup>
  <objectgroup id="3" name="SpawnPoint">
-  <object id="179" name="Player" type="Player" x="176" y="4592" width="32" height="32"/>
+  <object id="179" name="Player" type="Player" x="176.5" y="4591.5" width="32" height="32"/>
   <object id="180" type="Saw" x="0" y="4736" width="368" height="32">
    <properties>
     <property name="offGoUp" type="float" value="295"/>
    </properties>
   </object>
+  <object id="211" name="Goal" type="Goal" x="161.5" y="75.5" width="32" height="32"/>
  </objectgroup>
 </map>

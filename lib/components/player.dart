@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
+import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/level.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
@@ -95,6 +96,7 @@ class Player extends SpriteAnimationGroupComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Saw) _respawn();
+    if (other is Goal) print('WIN!!!');
     super.onCollisionStart(intersectionPoints, other);
   }
 

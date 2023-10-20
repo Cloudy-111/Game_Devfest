@@ -23,9 +23,11 @@ enum PlayerState {
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<JumpKing>, KeyboardHandler, CollisionCallbacks {
   String character;
+  int attemps;
   Player({
     position,
     this.character = 'Pink Man',
+    this.attemps = 1,
   }) : super(position: position);
   //constructor nhan 1 chuoi, thuoc tinh position duoc ke thua tu lop cha
 
@@ -49,6 +51,8 @@ class Player extends SpriteAnimationGroupComponent
   bool hasDie = false;
   bool hasStandMoveHorizontalPlatform = false;
   bool hasStandMoveVerticalPlatform = false;
+
+  late Function(int) onAttemptsChanged;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -95,7 +99,10 @@ class Player extends SpriteAnimationGroupComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Saw) _respawn();
+    if (other is Saw) {
+      _respawn();
+      increaseAttemp();
+    }
     if (other is Goal) print('WIN!!!');
     super.onCollisionStart(intersectionPoints, other);
   }
@@ -318,5 +325,10 @@ class Player extends SpriteAnimationGroupComponent
         loop: false,
       ),
     );
+  }
+
+  void increaseAttemp() {
+    attemps += 1;
+    onAttemptsChanged(attemps);
   }
 }

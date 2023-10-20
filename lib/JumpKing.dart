@@ -1,5 +1,8 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:flame/palette.dart';
+
+import 'main.dart';
 
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
@@ -20,11 +23,25 @@ class JumpKing extends FlameGame
   Goal goal = Goal(character: 'Virtual Guy');
   late JoystickComponent joyStick;
   bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
-
+  TextComponent attemp = TextComponent();
   final gameResolution = Vector2(368, 640);
 
   @override
   FutureOr<void> onLoad() async {
+    final textStyle = TextStyle(
+        color: BasicPalette.white.color, fontSize: 30, fontFamily: 'Karma');
+    attemp.priority = 5;
+    attemp
+      ..text = 'Attempts: 1'
+      ..textRenderer = TextPaint(
+        style: textStyle,
+      )
+      ..position = Vector2(120, 600);
+    player.onAttemptsChanged = (attemps) {
+      attemp..text = 'Attempts: $attemps';
+    };
+    add(attemp);
+
     await images.loadAllImages();
     final screen = Level(
       player: player,
@@ -92,5 +109,9 @@ class JumpKing extends FlameGame
         player.horizontalMovement = 0;
         break;
     }
+  }
+
+  String _updateAttemp() {
+    return Player().attemps.toString();
   }
 }

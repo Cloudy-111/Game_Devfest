@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:flame/palette.dart';
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';

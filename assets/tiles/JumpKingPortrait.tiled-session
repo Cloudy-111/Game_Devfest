@@ -42,11 +42,11 @@
                 3,
                 2
             ],
-            "scale": 1.5,
-            "selectedLayer": 1,
+            "scale": 2,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 104,
-                "y": 4610
+                "x": 183.75,
+                "y": 2399.75
             }
         },
         "level-portrait-2.tmx": {
@@ -115,11 +115,11 @@
     "project": "JumpKingPortrait.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "level-1.tmx",
         "JumpkingPortrait.tsx",
         "level-portrait.tmx",
         "level-portrait-2.tmx",
         "level-portrait-soooolong.tmx",
+        "level-1.tmx",
         "level-portrait-solong.tmx",
         "level-02.tmx",
         "level-01.tmx",

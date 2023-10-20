@@ -18,6 +18,7 @@ class Saw extends SpriteAnimationComponent
         );
   static const stepTime = 0.1;
   static int moveSpeed = 17;
+  bool isGameInit = false;
 
   static Vector2 startingPosition = Vector2.zero();
 
@@ -40,7 +41,8 @@ class Saw extends SpriteAnimationComponent
 
   @override
   void update(double dt) {
-    position.y += -moveSpeed * dt;
+    //position.y += -moveSpeed * dt;
+    _updateTsunami(dt);
     super.update(dt);
   }
 
@@ -52,6 +54,25 @@ class Saw extends SpriteAnimationComponent
   }
 
   void _respawn() {
+    isGameInit = false;
     position = startingPosition;
+  }
+
+  void _updateTsunami(double dt) {
+    //skip first init frame
+    if (!isGameInit) {
+      isGameInit = true;
+      return;
+    }
+
+    // cho sóng luôn ở đáy nếu màn hình vượt trên sóng khởi tạo
+    final double bottomScreenPosition =
+        gameRef.cam.viewfinder.position.y + gameRef.gameResolution.y / 2;
+    if (bottomScreenPosition >= position.y) {
+      // cập nhật sóng như bình thường nếu vẫn trong khung hình
+      position.y += -moveSpeed * dt;
+    } else {
+      position.y = bottomScreenPosition - size.y;
+    }
   }
 }

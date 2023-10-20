@@ -93,4 +93,16 @@ class JumpKing extends FlameGame
         break;
     }
   }
+
+  void onLose() {
+    overlays.add('gameOverOverlay');
+  }
+
+  void resetGame() {
+    overlays.remove('gameOverOverlay');
+  }
+
+  void onWin() {
+    overlays.add('winOverlay');
+  }
 }

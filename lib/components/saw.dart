@@ -54,6 +54,7 @@ class Saw extends SpriteAnimationComponent
   }
 
   void _respawn() {
+    (game as JumpKing).onLose();
     isGameInit = false;
     position = startingPosition;
   }

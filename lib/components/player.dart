@@ -10,6 +10,7 @@ import 'package:first_flutter_prj/components/saw.dart';
 import 'package:first_flutter_prj/components/utils.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 enum PlayerState {
@@ -96,7 +97,10 @@ class Player extends SpriteAnimationGroupComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (other is Saw) _respawn();
-    if (other is Goal) print('WIN!!!');
+    //if (other is Goal) print('WIN!!!');
+    if (other is Goal) {
+      (game as JumpKing).onWin();
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -300,6 +304,7 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _respawn() async {
+    (game as JumpKing).onLose();
     position = startingPosition;
     //Saw.moveSpeed = 0;
     //current = PlayerState.disappearing;

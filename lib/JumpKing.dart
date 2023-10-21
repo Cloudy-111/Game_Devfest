@@ -8,6 +8,7 @@ import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -24,6 +25,8 @@ class JumpKing extends FlameGame
   Goal goal = Goal(character: 'Virtual Guy');
   late JoystickComponent joyStick;
   bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
+  bool playSound = false; // bug của flutter với windows, bắt buộc có
+  double soundVolume = 1.0;
   TextComponent attemp = TextComponent();
   final gameResolution = Vector2(368, 640);
 

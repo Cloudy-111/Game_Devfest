@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/player.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
@@ -34,7 +35,7 @@ class Saw extends SpriteAnimationComponent
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: stepTime,
-        textureSize: Vector2(336, 32),
+        textureSize: Vector2(368, 640),
       ),
     );
     return super.onLoad();
@@ -58,6 +59,9 @@ class Saw extends SpriteAnimationComponent
   }
 
   void _respawn() {
+    if (!game.playSound) {
+      FlameAudio.play('hitHurt.wav', volume: game.soundVolume);
+    }
     isGameInit = false;
     position = startingPosition;
   }
@@ -76,7 +80,7 @@ class Saw extends SpriteAnimationComponent
       // cập nhật sóng như bình thường nếu vẫn trong khung hình
       position.y += -moveSpeed * dt;
     } else {
-      position.y = bottomScreenPosition - size.y;
+      position.y = bottomScreenPosition;
     }
   }
 }

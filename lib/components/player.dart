@@ -5,6 +5,7 @@ import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/start_screen.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/level.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';
 import 'package:first_flutter_prj/components/saw.dart';
@@ -212,6 +213,9 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _playerJump(double dt) {
+    if (!game.playSound) {
+      FlameAudio.play('jump.wav', volume: game.soundVolume);
+    }
     velocity.y = -_jumpForce * (dur / 250 > 1 ? dur / 250 : 1);
     position.y += velocity.y * dt;
     isOnGround = false;

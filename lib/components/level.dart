@@ -9,6 +9,7 @@ import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 class Level extends World with HasGameRef<JumpKing> {
@@ -32,6 +33,10 @@ class Level extends World with HasGameRef<JumpKing> {
     _setupCamera();
     _spawningObject();
     _addCollision();
+
+    if (!game.playSound) {
+      FlameAudio.loop('forest-background.mp3', volume: game.soundVolume);
+    }
 
     return super.onLoad();
   }

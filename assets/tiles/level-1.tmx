@@ -724,7 +724,7 @@
   <object id="209" type="Platform" x="288.125" y="4352" width="16.75" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="SpawnPoint">
-  <object id="179" name="Player" type="Player" x="96" y="160" width="32" height="32"/>
+  <object id="179" name="Player" type="Player" x="160" y="4592" width="32" height="32"/>
   <object id="180" type="Saw" x="0" y="4736" width="368" height="640">
    <properties>
     <property name="offGoUp" type="float" value="295"/>

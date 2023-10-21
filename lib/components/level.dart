@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:flame/palette.dart';
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/Goal.dart';
@@ -16,10 +17,12 @@ class Level extends World with HasGameRef<JumpKing> {
   final String levelName;
   final Player player;
   final Goal goal;
+  final Enemy thuyTinh;
   Level({
     required this.levelName,
     required this.player,
     required this.goal,
+    required this.thuyTinh,
   });
   late TiledComponent level;
   List<CollisionBlock> lstCollisionBlock = []; //dung de chua cac collitionBlock
@@ -29,7 +32,6 @@ class Level extends World with HasGameRef<JumpKing> {
     level = await TiledComponent.load(
         '$levelName.tmx', Vector2.all(16)); //kich co moi o cua man hinh game
 
-    add(level);
     _setupCamera();
     _spawningObject();
     _addCollision();
@@ -38,6 +40,7 @@ class Level extends World with HasGameRef<JumpKing> {
       FlameAudio.loop('forest-background.mp3', volume: game.soundVolume);
     }
 
+    add(level);
     return super.onLoad();
   }
 
@@ -51,6 +54,12 @@ class Level extends World with HasGameRef<JumpKing> {
             player.position = Vector2(spawnPoint.x, spawnPoint.y);
             add(player);
             break;
+          case 'ThuyTinh':
+            thuyTinh.startPosition = Vector2(spawnPoint.x, spawnPoint.y);
+            thuyTinh.position = Vector2(spawnPoint.x, spawnPoint.y);
+            thuyTinh.size = Vector2(spawnPoint.width, spawnPoint.height);
+            add(thuyTinh);
+            break;
           case 'Saw':
             final offGoUp = spawnPoint.properties.getValue('offGoUp');
             final saw = Saw(
@@ -60,8 +69,7 @@ class Level extends World with HasGameRef<JumpKing> {
             );
             add(saw);
             break;
-          case 'ThuyTinh':
-            break;
+
           case 'Goal':
             goal.position = Vector2(spawnPoint.x, spawnPoint.y);
             add(goal);

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
+import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/collisions.dart';
@@ -59,11 +60,9 @@ class Saw extends SpriteAnimationComponent
   }
 
   void _respawn() {
-    if (!game.playSound) {
-      FlameAudio.play('hitHurt.wav', volume: game.soundVolume);
-    }
     isGameInit = false;
     position = startingPosition;
+    gameRef.thuyTinh.position = gameRef.thuyTinh.startPosition;
   }
 
   void _updateTsunami(double dt) {
@@ -72,15 +71,20 @@ class Saw extends SpriteAnimationComponent
       isGameInit = true;
       return;
     }
+    // print(gameRef.thuyTinh.position.toString());
 
     // cho sóng luôn ở đáy nếu màn hình vượt trên sóng khởi tạo
+    // Thuỷ tinh luôn ở mép trên sóng
     final double bottomScreenPosition =
         gameRef.cam.viewfinder.position.y + gameRef.gameResolution.y / 2;
     if (bottomScreenPosition >= position.y) {
       // cập nhật sóng như bình thường nếu vẫn trong khung hình
       position.y += -moveSpeed * dt;
+      gameRef.thuyTinh.y += -moveSpeed * dt;
     } else {
       position.y = bottomScreenPosition;
+      gameRef.thuyTinh.position.y =
+          bottomScreenPosition - gameRef.thuyTinh.height;
     }
   }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="212">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="213">
  <tileset firstgid="1" source="JumpkingPortrait.tsx"/>
  <layer id="1" name="Tile Layer 1" width="23" height="300">
   <data encoding="csv">
@@ -731,5 +731,6 @@
    </properties>
   </object>
   <object id="210" name="Goal" type="Goal" x="161.5" y="75.5" width="32" height="32"/>
+  <object id="212" type="ThuyTinh" x="0" y="4704" width="32" height="32"/>
  </objectgroup>
 </map>

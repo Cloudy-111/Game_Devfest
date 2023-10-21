@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/Goal.dart';
+import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:first_flutter_prj/components/start_screen.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
 import 'package:first_flutter_prj/components/level.dart';
@@ -103,12 +104,11 @@ class Player extends SpriteAnimationGroupComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Saw) {
+    if (other is Saw || other is Enemy) {
       (game as JumpKing).onLose();
       _respawn();
       increaseAttemp();
-    }
-    if (other is Goal) {
+    } else if (other is Goal) {
       (game as JumpKing).onWin();
       StartScreen();
       _respawn();

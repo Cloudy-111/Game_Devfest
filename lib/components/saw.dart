@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/player.dart';
+import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -23,6 +24,7 @@ class Saw extends SpriteAnimationComponent
   bool isWin = false;
 
   static Vector2 startingPosition = Vector2.zero();
+  Vector2 startPosition = Vector2.zero();
 
   @override
   FutureOr<void> onLoad() {
@@ -64,6 +66,7 @@ class Saw extends SpriteAnimationComponent
     }
     isGameInit = false;
     position = startingPosition;
+    gameRef.thuyTinh.position = gameRef.thuyTinh.startPosition;
   }
 
   void _updateTsunami(double dt) {
@@ -79,8 +82,11 @@ class Saw extends SpriteAnimationComponent
     if (bottomScreenPosition >= position.y) {
       // cập nhật sóng như bình thường nếu vẫn trong khung hình
       position.y += -moveSpeed * dt;
+      gameRef.thuyTinh.y += -moveSpeed * dt;
     } else {
       position.y = bottomScreenPosition;
+      gameRef.thuyTinh.position.y =
+          bottomScreenPosition - gameRef.thuyTinh.height;
     }
   }
 }

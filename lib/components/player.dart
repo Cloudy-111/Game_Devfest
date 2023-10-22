@@ -1,22 +1,42 @@
 import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
+import 'package:first_flutter_prj/components/Goal.dart';
+import 'package:first_flutter_prj/components/enemy.dart';
+import 'package:first_flutter_prj/components/start_screen.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
+import 'package:first_flutter_prj/components/level.dart';
+import 'package:flame_audio/flame_audio.dart';
+import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';
+import 'package:first_flutter_prj/components/saw.dart';
 import 'package:first_flutter_prj/components/utils.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
-enum PlayerState { idle, running, jumping, falling } // trang thai cua player
+enum PlayerState {
+  idle,
+  running,
+  jumping,
+  falling,
+  disappearing
+} // trang thai cua player
 
 class Player extends SpriteAnimationGroupComponent
-    with HasGameRef<JumpKing>, KeyboardHandler {
+    with HasGameRef<JumpKing>, KeyboardHandler, CollisionCallbacks {
   String character;
+  int attemps;
+  bool isWin;
   Player({
     position,
+<<<<<<< HEAD
     this.character = 'Son_Tinh',
+=======
+    this.character = 'Pink Man',
+    this.attemps = 1,
+    this.isWin = false,
+>>>>>>> origin
   }) : super(position: position);
   //constructor nhan 1 chuoi, thuoc tinh position duoc ke thua tu lop cha
 
@@ -25,19 +45,28 @@ class Player extends SpriteAnimationGroupComponent
   late final SpriteAnimation runningAnimation;
   late final SpriteAnimation jumpingAnimation;
   late final SpriteAnimation fallingAnimation;
+  late final SpriteAnimation disappearingAnimation;
   DateTime? pressTime;
   int dur = 1;
 
-  final double _gravity = 10;
-  final double _limitVelocityPositive = 1000;
+  final double _gravity = 15;
+  final double _limitVelocityPositive = 100000;
   final double _limitVelocityNegative = 400;
   final double _jumpForce = 100;
   bool isOnGround = false;
   bool hasJumped = false;
+  bool hasFall = false;
+  bool hasPressSpace = false;
+  bool hasDie = false;
+  bool hasStandMoveHorizontalPlatform = false;
+  bool hasStandMoveVerticalPlatform = false;
+
+  late Function(int) onAttemptsChanged;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
   Vector2 velocity = Vector2.zero();
+  Vector2 startingPosition = Vector2.zero();
   List<CollisionBlock> lstCollisionBlock = [];
   PlayerHitbox hitbox = PlayerHitbox(
     offsetX: 10,
@@ -46,23 +75,18 @@ class Player extends SpriteAnimationGroupComponent
     height: 28,
   );
 
-  void startSpaceHold() {
-    pressTime = DateTime.now();
-  }
-
-  int endSpaceHold() {
-    if (pressTime != null) {
-      DateTime endTime = DateTime.now();
-      Duration duration = endTime.difference(pressTime!);
-      return duration.inMilliseconds;
-    }
-    return 0; // Trường hợp không có sự kiện nhấn giữ Space
-  }
-
   @override
   FutureOr<void> onLoad() {
+    MoveBlock sample = MoveBlock();
+    if (sample.isHorizontal) {
+      hasStandMoveHorizontalPlatform = true;
+    } else {
+      hasStandMoveVerticalPlatform = true;
+    }
+    priority = 2;
     _loadAllAnimation(); // _method tuc method la private
     debugMode = false;
+    startingPosition = Vector2(position.x, position.y);
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
       size: Vector2(hitbox.width, hitbox.height),
@@ -82,6 +106,25 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    if (other is Saw) {
+      if (!game.playSound) {
+        FlameAudio.play('hitHurt.wav', volume: game.soundVolume);
+      }
+      (game as JumpKing).onLose();
+      _respawn();
+      increaseAttemp();
+    } else if (other is Goal) {
+      (game as JumpKing).onWin();
+      StartScreen();
+      _respawn();
+      print('WIN!!!');
+    }
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
   bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     horizontalMovement = 0;
     final isLeftKey = keysPressed.contains(LogicalKeyboardKey.keyA) ||
@@ -93,9 +136,12 @@ class Player extends SpriteAnimationGroupComponent
     horizontalMovement += isRightKey ? 1 : 0;
 
     //hasJumped = keysPressed.contains(LogicalKeyboardKey.space);
+
     if (event is RawKeyUpEvent &&
         event.logicalKey == LogicalKeyboardKey.space) {
+      //hasFall = false;
       hasJumped = true;
+      hasPressSpace = false;
       // Người dùng đã nhả phím Space
       print("Thời gian nhấn Space: $pressTime ms");
       DateTime end = DateTime.now();
@@ -111,6 +157,9 @@ class Player extends SpriteAnimationGroupComponent
         pressTime == null) {
       // Người dùng đã nhấn phím Space
       pressTime = DateTime.now();
+      hasFall = false;
+      hasJumped = false;
+      hasPressSpace = true;
     }
 
     return super.onKeyEvent(event, keysPressed);
@@ -129,12 +178,15 @@ class Player extends SpriteAnimationGroupComponent
     //jumpingAnimation
     jumpingAnimation = _spriteAnimation('Jump', 1);
 
+    disappearingAnimation = _specialSpriteAnimation('Desappearing', 7);
+
     // tao cac animations
     animations = {
       PlayerState.idle: idleAnimation,
       PlayerState.running: runningAnimation,
       PlayerState.jumping: jumpingAnimation,
       PlayerState.falling: fallingAnimation,
+      PlayerState.disappearing: disappearingAnimation,
     }; //object animations hien tai la 1 phan tu trong enum co gia tri bang idleAnimation
 
     // dat animation hien tai
@@ -155,24 +207,31 @@ class Player extends SpriteAnimationGroupComponent
   }
 
   void _updateMovementPlayer(double dt) {
-    if (hasJumped && isOnGround) _playerJump(dt);
+    if (hasJumped && isOnGround && !hasFall) _playerJump(dt);
 
     //if (velocity.y > _gravity) isOnGround = true;
-
     velocity.x = horizontalMovement *
         moveSpeed; //van toc cua object(+ hay - la di sang trai hoac phai)
+    // if (hasStandMoveHorizontalPlatform) {
+    //   velocity.x += 25 * MoveBlock.moveDirection;
+    // }
     position.x += velocity.x *
         dt; //vi tri moi = velocity * deltaTime (la 1 vector2, the hien toa do cua object)
   }
 
   void _playerJump(double dt) {
-    velocity.y = -_jumpForce * (dur / 500 > 1 ? dur / 500 : 1);
+    if (!game.playSound) {
+      FlameAudio.play('jump.wav', volume: game.soundVolume);
+    }
+    velocity.y = -_jumpForce * (dur / 250 > 1 ? dur / 250 : 1);
     position.y += velocity.y * dt;
     isOnGround = false;
     hasJumped = false;
+    hasFall = false;
   }
 
   void _updatePlayerState() {
+    // if (velocity.y != 0) print(velocity.y);
     PlayerState playerState = PlayerState.idle;
     if (velocity.x < 0 && scale.x > 0) {
       flipHorizontallyAroundCenter();
@@ -180,11 +239,33 @@ class Player extends SpriteAnimationGroupComponent
       flipHorizontallyAroundCenter();
     }
 
-    if (velocity.x != 0 || horizontalMovement != 0)
-      playerState = PlayerState.running;
+    if (hasStandMoveVerticalPlatform) {
+      if (velocity.x != 0) {
+        playerState = PlayerState.running;
+      } else {
+        playerState = PlayerState.idle;
+      }
+    }
 
-    if (velocity.y > 0) playerState = PlayerState.falling;
-    if (velocity.y < 0) playerState = PlayerState.jumping;
+    if (velocity.x != 0 && velocity.y == 0) {
+      playerState = PlayerState.running;
+    }
+    if (velocity.y == 0) {
+      isOnGround = true;
+      // hasStandMoveVerticalPlatform = false;
+    }
+
+    if (velocity.y > 0 && !isOnGround) {
+      playerState = PlayerState.falling;
+      hasFall = true;
+      hasStandMoveHorizontalPlatform = false;
+      // isOnGround = false;
+    }
+    if (velocity.y < 0) {
+      playerState = PlayerState.jumping;
+      hasStandMoveVerticalPlatform = false;
+      hasStandMoveHorizontalPlatform = false;
+    }
     current = playerState;
   }
 
@@ -242,5 +323,30 @@ class Player extends SpriteAnimationGroupComponent
         }
       }
     }
+  }
+
+  void _respawn() async {
+    position = startingPosition;
+    //current = PlayerState.disappearing;
+    velocity = Vector2.zero();
+    hasDie = true;
+    print('Falied');
+  }
+
+  SpriteAnimation _specialSpriteAnimation(String state, int amount) {
+    return SpriteAnimation.fromFrameData(
+      game.images.fromCache('Main Characters/$state (96x96).png'),
+      SpriteAnimationData.sequenced(
+        amount: amount,
+        stepTime: stepTime,
+        textureSize: Vector2.all(96),
+        loop: false,
+      ),
+    );
+  }
+
+  void increaseAttemp() {
+    attemps += 1;
+    onAttemptsChanged(attemps);
   }
 }

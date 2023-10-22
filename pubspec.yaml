@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   flame: ^1.9.1
   flame_tiled: ^1.14.1
+  provider: ^6.0.5
+  flame_audio: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -60,14 +62,28 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/audio/
     - assets/tiles/
     - assets/images/Terrain/
+    - assets/images/Other/
+    - assets/images/Traps/Saw/
+    - assets/images/Traps/Platforms/
     - assets/images/HUD/
+    - assets/images/Main Characters/
     - assets/images/Main Characters/Mask Dude/
     - assets/images/Main Characters/Ninja Frog/
     - assets/images/Main Characters/Pink Man/
     - assets/images/Main Characters/Virtual Guy/
+<<<<<<< HEAD
     - assets/images/Main Characters/Son_Tinh/
+=======
+    - assets/images/Main Characters/SonTinh/
+    - assets/images/Background/
+  fonts: 
+      - family: Karma
+        fonts:
+          - asset: assets/font/karma/Karma Future.otf
+>>>>>>> origin
 
   # To add assets to your application, add an assets section, like this:
   # assets:

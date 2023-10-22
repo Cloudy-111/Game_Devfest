@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:flame/components.dart';
 

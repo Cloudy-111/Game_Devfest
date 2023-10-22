@@ -5,7 +5,6 @@ import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:first_flutter_prj/components/start_screen.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
-import 'package:first_flutter_prj/components/level.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';
@@ -58,6 +57,7 @@ class Player extends SpriteAnimationGroupComponent
   bool hasStandMoveVerticalPlatform = false;
 
   late Function(int) onAttemptsChanged;
+  late Function(int) onAttemptsReset;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -115,6 +115,7 @@ class Player extends SpriteAnimationGroupComponent
       (game as JumpKing).onWin();
       StartScreen();
       _respawn();
+      resetAttemp();
       print('WIN!!!');
     }
     super.onCollisionStart(intersectionPoints, other);
@@ -344,5 +345,10 @@ class Player extends SpriteAnimationGroupComponent
   void increaseAttemp() {
     attemps += 1;
     onAttemptsChanged(attemps);
+  }
+
+  void resetAttemp() {
+    attemps = 1;
+    onAttemptsReset(attemps);
   }
 }

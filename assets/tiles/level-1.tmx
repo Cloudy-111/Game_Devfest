@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="222">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="255">
  <tileset firstgid="1" source="JumpkingPortrait.tsx"/>
  <layer id="1" name="Tile Layer 1" width="23" height="300">
   <data encoding="csv">
@@ -10,7 +10,7 @@
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
-113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
+113,0,0,0,0,23,24,24,24,13,14,14,15,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
@@ -415,43 +415,13 @@
   <object id="113" type="Platform" x="16" y="3792" width="48" height="16"/>
   <object id="114" type="Platform" x="48" y="4240" width="48" height="16"/>
   <object id="115" type="Platform" x="48" y="4192" width="48" height="16"/>
-  <object id="118" type="Platform" x="279" y="1312" width="17" height="15.5"/>
-  <object id="119" type="Platform" x="310.5" y="1360" width="18" height="15.5"/>
-  <object id="120" type="Platform" x="278.5" y="1808" width="18.5" height="16"/>
-  <object id="121" type="Platform" x="311" y="1856" width="17.5" height="16.5"/>
-  <object id="122" type="Platform" x="70" y="2000" width="19" height="15"/>
-  <object id="123" type="Platform" x="39" y="2048" width="18" height="15"/>
-  <object id="124" type="Platform" x="313.5" y="2272" width="13" height="13"/>
-  <object id="125" type="Platform" x="282" y="2304" width="13.5" height="13.5"/>
-  <object id="126" type="Platform" x="314.5" y="2336" width="12" height="15"/>
-  <object id="127" type="Platform" x="313.5" y="2528" width="13.5" height="16.5"/>
-  <object id="128" type="Platform" x="282" y="2560" width="12" height="14.5"/>
-  <object id="129" type="Platform" x="313.5" y="2592" width="13.5" height="14.5"/>
-  <object id="130" type="Platform" x="314" y="2816" width="13" height="14.5"/>
-  <object id="131" type="Platform" x="282" y="2848" width="12.5" height="14.5"/>
-  <object id="132" type="Platform" x="314.5" y="2880" width="13" height="13"/>
-  <object id="133" type="Platform" x="314.5" y="3072" width="13" height="14.5"/>
-  <object id="134" type="Platform" x="283" y="3104" width="11" height="15"/>
-  <object id="135" type="Platform" x="314" y="3136" width="12" height="16"/>
-  <object id="136" type="Platform" x="312" y="3390.5" width="17.5" height="18.5"/>
-  <object id="137" type="Platform" x="39.5" y="3584" width="18" height="16.5"/>
-  <object id="138" type="Platform" x="311" y="3888" width="17.5" height="16.5"/>
   <object id="139" type="Platform" x="311.25" y="4384" width="16.75" height="16"/>
-  <object id="140" type="Platform" x="38.5" y="4384" width="18" height="16"/>
-  <object id="141" type="Platform" x="39.3333" y="4512" width="16.6667" height="16.3333"/>
-  <object id="142" type="Platform" x="55.3333" y="4576" width="16.3333" height="14.6667"/>
   <object id="144" type="Platform" x="296" y="4576" width="15.75" height="16"/>
   <object id="145" type="Platform" x="312" y="4512" width="16.75" height="16"/>
   <object id="146" x="112" y="2048" width="16" height="16"/>
   <object id="147" x="48" y="1936" width="16" height="16"/>
   <object id="148" x="240" y="1856" width="16" height="16"/>
   <object id="149" x="240" y="1360" width="16" height="16"/>
-  <object id="150" type="Platform" x="313" y="416" width="13.5" height="13.5"/>
-  <object id="151" type="Platform" x="283.5" y="448" width="11.5" height="14.5"/>
-  <object id="152" type="Platform" x="314" y="480" width="12.5" height="15"/>
-  <object id="153" type="Platform" x="315" y="672" width="11.5" height="16"/>
-  <object id="154" type="Platform" x="281.5" y="704" width="12.5" height="15.5"/>
-  <object id="155" type="Platform" x="313.5" y="736" width="12" height="14.5"/>
   <object id="156" x="0" y="4624" width="368" height="176"/>
   <object id="159" type="Platform" x="304" y="3616" width="48" height="16"/>
   <object id="160" type="Platform" x="304" y="3568" width="48" height="16"/>
@@ -485,7 +455,7 @@
     <property name="isStatic" type="bool" value="false"/>
     <property name="isVertical" type="bool" value="true"/>
     <property name="moveSpeed" type="float" value="15"/>
-    <property name="offNeg" type="float" value="6"/>
+    <property name="offNeg" type="float" value="5"/>
     <property name="offPos" type="float" value="4"/>
     <property name="stepTime" type="float" value="0.2"/>
    </properties>
@@ -722,6 +692,42 @@
   </object>
   <object id="207" x="224" y="3712" width="16" height="48"/>
   <object id="209" type="Platform" x="288.125" y="4352" width="16.75" height="16"/>
+  <object id="213" type="Platform" x="56" y="4576" width="15.75" height="16"/>
+  <object id="214" type="Platform" x="40" y="4512" width="15.75" height="16"/>
+  <object id="215" type="Platform" x="40" y="4384" width="15.75" height="16"/>
+  <object id="218" type="Platform" x="63.625" y="4351.5" width="15.75" height="16"/>
+  <object id="219" type="Platform" x="272" y="4240" width="48" height="16"/>
+  <object id="220" type="Platform" x="272" y="4192" width="48" height="16"/>
+  <object id="221" type="Platform" x="312.625" y="3886.5" width="15.75" height="16"/>
+  <object id="222" type="Platform" x="40.625" y="3582" width="15.75" height="16"/>
+  <object id="223" type="Platform" x="312.625" y="3392" width="15.75" height="16"/>
+  <object id="226" type="Platform" x="40.625" y="2047.5" width="15.75" height="16"/>
+  <object id="227" type="Platform" x="72.125" y="1998.5" width="15.75" height="16"/>
+  <object id="228" type="Platform" x="280.125" y="1806.5" width="15.75" height="16"/>
+  <object id="229" type="Platform" x="311.625" y="1854" width="15.75" height="16"/>
+  <object id="232" type="Platform" x="305.125" y="1743.5" width="15.75" height="16"/>
+  <object id="233" type="Platform" x="312.625" y="1358.5" width="15.75" height="16"/>
+  <object id="234" type="Platform" x="279.625" y="1311" width="15.75" height="16"/>
+  <object id="235" type="Platform" x="305.125" y="1247.5" width="15.75" height="16"/>
+  <object id="236" type="Platform" x="316.125" y="416" width="9.25" height="14.5"/>
+  <object id="237" type="Platform" x="284.375" y="446.25" width="9.25" height="14.5"/>
+  <object id="238" type="Platform" x="315.375" y="478.25" width="9.25" height="14.5"/>
+  <object id="239" type="Platform" x="315.875" y="671.25" width="9.25" height="14.5"/>
+  <object id="240" type="Platform" x="316.375" y="735.75" width="9.25" height="14.5"/>
+  <object id="241" type="Platform" x="283.875" y="703.25" width="9.25" height="14.5"/>
+  <object id="242" type="Platform" x="316.375" y="2271.25" width="9.25" height="14.5"/>
+  <object id="243" type="Platform" x="283.375" y="2302.75" width="9.25" height="14.5"/>
+  <object id="244" type="Platform" x="315.875" y="2335.75" width="9.25" height="14.5"/>
+  <object id="245" type="Platform" x="316.375" y="2527.75" width="9.25" height="14.5"/>
+  <object id="246" type="Platform" x="315.375" y="2591.25" width="9.25" height="14.5"/>
+  <object id="247" type="Platform" x="284.375" y="2557.75" width="9.25" height="14.5"/>
+  <object id="248" type="Platform" x="314.875" y="2814.75" width="9.25" height="14.5"/>
+  <object id="249" type="Platform" x="316.375" y="2878.75" width="9.25" height="14.5"/>
+  <object id="250" type="Platform" x="284.375" y="2846.25" width="9.25" height="14.5"/>
+  <object id="251" type="Platform" x="315.875" y="3136.75" width="9.25" height="14.5"/>
+  <object id="252" type="Platform" x="284.375" y="3103.75" width="9.25" height="14.5"/>
+  <object id="253" type="Platform" x="315.375" y="3071.25" width="9.25" height="14.5"/>
+  <object id="254" x="144" y="112" width="64" height="16"/>
   <object id="213" type="Platform" x="62.5" y="4351" width="18" height="16"/>
   <object id="215" type="Platform" x="272" y="4240" width="48" height="16"/>
   <object id="216" type="Platform" x="272" y="4192" width="48" height="16"/>
@@ -735,7 +741,7 @@
     <property name="offGoUp" type="float" value="295"/>
    </properties>
   </object>
-  <object id="210" name="Goal" type="Goal" x="161.5" y="75.5" width="32" height="32"/>
-  <object id="212" type="ThuyTinh" x="0" y="4704" width="32" height="32"/>
+  <object id="210" name="Goal" type="Goal" x="160" y="80" width="32" height="32"/>
+  <object id="212" type="ThuyTinh" x="16" y="4704" width="32" height="32"/>
  </objectgroup>
 </map>

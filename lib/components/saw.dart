@@ -9,7 +9,7 @@ import 'package:flame/components.dart';
 
 class Saw extends SpriteAnimationComponent
     with HasGameRef<JumpKing>, CollisionCallbacks {
-  final double offGoUp;
+  double offGoUp;
   Saw({
     this.offGoUp = 0,
     position,
@@ -24,6 +24,7 @@ class Saw extends SpriteAnimationComponent
   bool isWin = false;
 
   static Vector2 startingPosition = Vector2.zero();
+  Vector2 startPosition = Vector2.zero();
 
   @override
   FutureOr<void> onLoad() {
@@ -32,7 +33,7 @@ class Saw extends SpriteAnimationComponent
     debugMode = false;
     startingPosition = Vector2(position.x, position.y);
     animation = SpriteAnimation.fromFrameData(
-      game.images.fromCache('Other/water_level.png'),
+      game.images.fromCache('Other/water_large.png'),
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: stepTime,

@@ -29,15 +29,16 @@ class StartScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Welcome to JumpKing',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
+                    fontFamily: 'Karma',
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     final game = JumpKing();
@@ -53,10 +54,11 @@ class StartScreen extends StatelessWidget {
                       ),
                     ));
                   },
-                  child: Text(
+                  child: const Text(
                     'Start Game',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 25,
+                      fontFamily: 'Karma',
                     ),
                   ),
                 ),

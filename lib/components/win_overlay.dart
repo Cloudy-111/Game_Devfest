@@ -1,6 +1,5 @@
 import 'package:first_flutter_prj/JumpKing.dart';
-import 'package:first_flutter_prj/components/game_over_overlay.dart';
-import 'package:first_flutter_prj/components/saw.dart';
+import 'package:first_flutter_prj/components/player.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
@@ -20,9 +19,13 @@ class WinOverlay extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Win!!',
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(),
+                // style: Theme.of(context).textTheme.displayMedium!.copyWith(),
+                style: TextStyle(
+                  fontFamily: 'Karma',
+                  fontSize: 30,
+                ),
               ),
               // const WhiteSpace(height: 50),
               // ScoreDisplay(
@@ -46,7 +49,7 @@ class WinOverlay extends StatelessWidget {
                   //       },
                   //     )
                   (game as JumpKing).resetGame();
-                  Saw.moveSpeed = 17;
+                  Player().attemps = 1;
                 },
                 style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all(
@@ -55,7 +58,13 @@ class WinOverlay extends StatelessWidget {
                   textStyle: MaterialStateProperty.all(
                       Theme.of(context).textTheme.titleLarge),
                 ),
-                child: const Text('Play Again'),
+                child: const Text(
+                  'Play Again',
+                  style: TextStyle(
+                    fontFamily: 'Karma',
+                    fontSize: 25,
+                  ),
+                ),
               ),
             ],
           ),

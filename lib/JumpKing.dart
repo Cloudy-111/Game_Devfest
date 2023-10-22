@@ -1,16 +1,13 @@
 import 'dart:async';
 import 'dart:ui';
-import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/palette.dart';
-
-import 'main.dart';
 
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
-import 'package:flame_audio/flame_audio.dart';
+import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -24,10 +21,11 @@ class JumpKing extends FlameGame
   Color backgroundColor() => const Color(0xFF211F30);
   late CameraComponent cam;
   Player player = Player(character: 'SonTinh');
-  Goal goal = Goal(character: 'Virtual Guy');
-  Enemy thuyTinh = Enemy();
+  Goal goal = Goal(character: 'MiNuong');
+  Enemy thuyTinh = Enemy(character: 'ThuyTinh');
+  Saw saw = Saw();
   late JoystickComponent joyStick;
-  bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
+  bool showJoystick = true; //hien joystick khi la mobile, an khi la desktop
   bool playSound = false; // bug của flutter với windows, bắt buộc có
   double soundVolume = 1.0;
   TextComponent attemp = TextComponent();
@@ -36,22 +34,30 @@ class JumpKing extends FlameGame
   @override
   FutureOr<void> onLoad() async {
     final textStyle = TextStyle(
-        color: BasicPalette.white.color, fontSize: 30, fontFamily: 'Karma');
+        color: BasicPalette.white.color, fontSize: 25, fontFamily: 'Karma');
     attemp.priority = 5;
     attemp
       ..text = 'Attempts: 1'
       ..textRenderer = TextPaint(
         style: textStyle,
       )
-      ..position = Vector2(120, 600);
+      ..position = Vector2(10, 10);
     player.onAttemptsChanged = (attemps) {
-      attemp..text = 'Attempts: $attemps';
+      attemp.text = 'Attempts: $attemps';
+    };
+    player.onAttemptsReset = (attemps) {
+      attemp.text = 'Attempts: $attemps';
     };
     add(attemp);
 
     await images.loadAllImages();
     final screen = Level(
-        player: player, levelName: 'level-1', goal: goal, thuyTinh: thuyTinh);
+      player: player,
+      levelName: 'level-1',
+      goal: goal,
+      thuyTinh: thuyTinh,
+      saw: saw,
+    );
 
     cam = CameraComponent.withFixedResolution(
       world: screen,
@@ -115,10 +121,6 @@ class JumpKing extends FlameGame
     }
   }
 
-  String _updateAttemp() {
-    return Player().attemps.toString();
-  }
-
   void onLose() {
     overlays.add('gameOverOverlay');
   }
@@ -126,9 +128,15 @@ class JumpKing extends FlameGame
   void resetGame() {
     overlays.remove('winOverlay');
     overlays.remove('gameOverOverlay');
+    _resetSpritePosition();
   }
 
   void onWin() {
     overlays.add('winOverlay');
+  }
+
+  void _resetSpritePosition() {
+    saw.position = Saw.startingPosition;
+    thuyTinh.position = thuyTinh.startPosition;
   }
 }

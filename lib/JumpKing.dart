@@ -3,14 +3,11 @@ import 'dart:ui';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/palette.dart';
 
-import 'main.dart';
-
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
 import 'package:first_flutter_prj/components/enemy.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -44,7 +41,7 @@ class JumpKing extends FlameGame
       ..textRenderer = TextPaint(
         style: textStyle,
       )
-      ..position = Vector2(120, 600);
+      ..position = Vector2(0, 0);
     player.onAttemptsChanged = (attemps) {
       attemp..text = 'Attempts: $attemps';
     };
@@ -56,6 +53,7 @@ class JumpKing extends FlameGame
       levelName: 'level-1',
       goal: goal,
       thuyTinh: thuyTinh,
+      saw: saw,
     );
 
     cam = CameraComponent.withFixedResolution(
@@ -131,9 +129,15 @@ class JumpKing extends FlameGame
   void resetGame() {
     overlays.remove('winOverlay');
     overlays.remove('gameOverOverlay');
+    _resetSpritePosition();
   }
 
   void onWin() {
     overlays.add('winOverlay');
+  }
+
+  void _resetSpritePosition() {
+    saw.position = Saw.startingPosition;
+    thuyTinh.position = thuyTinh.startPosition;
   }
 }

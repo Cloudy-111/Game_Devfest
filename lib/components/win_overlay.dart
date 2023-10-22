@@ -1,5 +1,4 @@
 import 'package:first_flutter_prj/JumpKing.dart';
-import 'package:first_flutter_prj/components/game_over_overlay.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 

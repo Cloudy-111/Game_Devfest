@@ -2,10 +2,8 @@ import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/Goal.dart';
-import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:first_flutter_prj/components/start_screen.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
-import 'package:first_flutter_prj/components/level.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:first_flutter_prj/components/moveBlock.dart';
 import 'package:first_flutter_prj/components/player_hitbox.dart';

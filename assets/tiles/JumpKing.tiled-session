@@ -13,7 +13,7 @@
             "scaleInEditor": 1
         },
         "JumpkingPortrait.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1.5
         },
         "level-01.tmx": {
             "expandedObjectLayers": [
@@ -36,14 +36,14 @@
         },
         "level-1.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
-            "scale": 4,
-            "selectedLayer": 1,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 183.875,
-                "y": 2399.875
+                "x": 183.66666666666666,
+                "y": 2399.6666666666665
             }
         },
         "level-portrait-soooolong.tmx": {

@@ -1,21 +1,19 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:first_flutter_prj/components/enemy.dart';
-import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/palette.dart';
-
-import 'main.dart';
 
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
 import 'package:first_flutter_prj/components/level.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
+
+import 'components/saw.dart';
 
 class JumpKing extends FlameGame
     with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection {
@@ -26,6 +24,7 @@ class JumpKing extends FlameGame
   Player player = Player(character: 'SonTinh');
   Goal goal = Goal(character: 'Virtual Guy');
   Enemy thuyTinh = Enemy();
+  Saw saw = Saw();
   late JoystickComponent joyStick;
   bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
   bool playSound = false; // bug của flutter với windows, bắt buộc có
@@ -51,7 +50,11 @@ class JumpKing extends FlameGame
 
     await images.loadAllImages();
     final screen = Level(
-        player: player, levelName: 'level-1', goal: goal, thuyTinh: thuyTinh);
+        player: player,
+        levelName: 'level-1',
+        goal: goal,
+        thuyTinh: thuyTinh,
+        saw: saw);
 
     cam = CameraComponent.withFixedResolution(
       world: screen,
@@ -126,9 +129,15 @@ class JumpKing extends FlameGame
   void resetGame() {
     overlays.remove('winOverlay');
     overlays.remove('gameOverOverlay');
+    _resetSpritePosition();
   }
 
   void onWin() {
     overlays.add('winOverlay');
+  }
+
+  void _resetSpritePosition() {
+    saw.position = Saw.startingPosition;
+    thuyTinh.position = thuyTinh.startPosition;
   }
 }

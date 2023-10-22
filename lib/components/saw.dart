@@ -1,15 +1,13 @@
 import 'dart:async';
 
 import 'package:first_flutter_prj/JumpKing.dart';
-import 'package:first_flutter_prj/components/enemy.dart';
 import 'package:first_flutter_prj/components/player.dart';
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
 class Saw extends SpriteAnimationComponent
     with HasGameRef<JumpKing>, CollisionCallbacks {
-  final double offGoUp;
+  double offGoUp;
   Saw({
     this.offGoUp = 0,
     position,

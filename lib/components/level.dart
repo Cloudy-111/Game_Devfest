@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:first_flutter_prj/components/enemy.dart';
-import 'package:flame/palette.dart';
 import 'package:first_flutter_prj/JumpKing.dart';
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/collision_block.dart';
@@ -18,12 +16,13 @@ class Level extends World with HasGameRef<JumpKing> {
   final Player player;
   final Goal goal;
   final Enemy thuyTinh;
-  Level({
-    required this.levelName,
-    required this.player,
-    required this.goal,
-    required this.thuyTinh,
-  });
+  final Saw saw;
+  Level(
+      {required this.levelName,
+      required this.player,
+      required this.goal,
+      required this.thuyTinh,
+      required this.saw});
   late TiledComponent level;
   List<CollisionBlock> lstCollisionBlock = []; //dung de chua cac collitionBlock
 
@@ -48,7 +47,7 @@ class Level extends World with HasGameRef<JumpKing> {
     final spawnPointLayer = level.tileMap.getLayer<ObjectGroup>('SpawnPoint');
 
     if (spawnPointLayer != null) {
-      for (final spawnPoint in spawnPointLayer!.objects) {
+      for (final spawnPoint in spawnPointLayer.objects) {
         switch (spawnPoint.class_) {
           case 'Player':
             player.position = Vector2(spawnPoint.x, spawnPoint.y);
@@ -62,11 +61,9 @@ class Level extends World with HasGameRef<JumpKing> {
             break;
           case 'Saw':
             final offGoUp = spawnPoint.properties.getValue('offGoUp');
-            final saw = Saw(
-              offGoUp: offGoUp,
-              position: Vector2(spawnPoint.x, spawnPoint.y),
-              size: Vector2(spawnPoint.width, spawnPoint.height),
-            );
+            saw.offGoUp = offGoUp;
+            saw.position = Vector2(spawnPoint.x, spawnPoint.y);
+            saw.size = Vector2(spawnPoint.width, spawnPoint.height);
             add(saw);
             break;
 

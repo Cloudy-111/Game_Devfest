@@ -1,6 +1,6 @@
 import 'package:first_flutter_prj/JumpKing.dart';
-import 'package:first_flutter_prj/components/game_over_overlay.dart';
 import 'package:first_flutter_prj/components/saw.dart';
+import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,6 @@ class WinOverlay extends StatelessWidget {
                   //       },
                   //     )
                   (game as JumpKing).resetGame();
-                  Saw.moveSpeed = 17;
                 },
                 style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all(

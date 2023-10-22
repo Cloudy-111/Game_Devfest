@@ -19,9 +19,13 @@ class GameOverOverlay extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Game Over',
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(),
+                // style: Theme.of(context).textTheme.displayMedium!.copyWith(),
+                style: TextStyle(
+                  fontFamily: 'Karma',
+                  fontSize: 30,
+                ),
               ),
               // const WhiteSpace(height: 50),
               // ScoreDisplay(
@@ -43,7 +47,13 @@ class GameOverOverlay extends StatelessWidget {
                   textStyle: MaterialStateProperty.all(
                       Theme.of(context).textTheme.titleLarge),
                 ),
-                child: const Text('Play Again'),
+                child: const Text(
+                  'Play Again',
+                  style: TextStyle(
+                    fontFamily: 'Karma',
+                    fontSize: 25,
+                  ),
+                ),
               ),
             ],
           ),

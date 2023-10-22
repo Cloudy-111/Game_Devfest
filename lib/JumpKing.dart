@@ -43,10 +43,10 @@ class JumpKing extends FlameGame
       )
       ..position = Vector2(0, 0);
     player.onAttemptsChanged = (attemps) {
-      attemp..text = 'Attempts: $attemps';
+      attemp.text = 'Attempts: $attemps';
     };
     player.onAttemptsReset = (attemps) {
-      attemp..text = 'Attempts: $attemps';
+      attemp.text = 'Attempts: $attemps';
     };
     add(attemp);
 
@@ -119,10 +119,6 @@ class JumpKing extends FlameGame
         player.horizontalMovement = 0;
         break;
     }
-  }
-
-  String _updateAttemp() {
-    return Player().attemps.toString();
   }
 
   void onLose() {

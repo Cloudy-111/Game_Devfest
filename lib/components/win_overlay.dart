@@ -1,4 +1,5 @@
 import 'package:first_flutter_prj/JumpKing.dart';
+import 'package:first_flutter_prj/components/player.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
@@ -44,6 +45,7 @@ class WinOverlay extends StatelessWidget {
                   //       },
                   //     )
                   (game as JumpKing).resetGame();
+                  Player().attemps = 1;
                 },
                 style: ButtonStyle(
                   minimumSize: MaterialStateProperty.all(

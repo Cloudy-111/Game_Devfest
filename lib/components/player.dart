@@ -56,6 +56,7 @@ class Player extends SpriteAnimationGroupComponent
   bool hasStandMoveVerticalPlatform = false;
 
   late Function(int) onAttemptsChanged;
+  late Function(int) onAttemptsReset;
 
   double horizontalMovement = 0;
   double moveSpeed = 100;
@@ -110,6 +111,7 @@ class Player extends SpriteAnimationGroupComponent
       (game as JumpKing).onWin();
       StartScreen();
       _respawn();
+      resetAttemp();
       print('WIN!!!');
     }
     super.onCollisionStart(intersectionPoints, other);
@@ -340,5 +342,10 @@ class Player extends SpriteAnimationGroupComponent
   void increaseAttemp() {
     attemps += 1;
     onAttemptsChanged(attemps);
+  }
+
+  void resetAttemp() {
+    attemps = 1;
+    onAttemptsReset(attemps);
   }
 }

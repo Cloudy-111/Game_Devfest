@@ -45,6 +45,9 @@ class JumpKing extends FlameGame
     player.onAttemptsChanged = (attemps) {
       attemp..text = 'Attempts: $attemps';
     };
+    player.onAttemptsReset = (attemps) {
+      attemp..text = 'Attempts: $attemps';
+    };
     add(attemp);
 
     await images.loadAllImages();

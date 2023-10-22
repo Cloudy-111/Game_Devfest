@@ -32,7 +32,7 @@ class Saw extends SpriteAnimationComponent
     debugMode = false;
     startingPosition = Vector2(position.x, position.y);
     animation = SpriteAnimation.fromFrameData(
-      game.images.fromCache('Other/water_level.png'),
+      game.images.fromCache('Other/water_large.png'),
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: stepTime,

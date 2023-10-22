@@ -21,11 +21,11 @@ class JumpKing extends FlameGame
   Color backgroundColor() => const Color(0xFF211F30);
   late CameraComponent cam;
   Player player = Player(character: 'SonTinh');
-  Goal goal = Goal(character: 'Virtual Guy');
-  Enemy thuyTinh = Enemy(character: 'Mask Dude');
+  Goal goal = Goal(character: 'MiNuong');
+  Enemy thuyTinh = Enemy(character: 'ThuyTinh');
   Saw saw = Saw();
   late JoystickComponent joyStick;
-  bool showJoystick = false; //hien joystick khi la mobile, an khi la desktop
+  bool showJoystick = true; //hien joystick khi la mobile, an khi la desktop
   bool playSound = false; // bug của flutter với windows, bắt buộc có
   double soundVolume = 1.0;
   TextComponent attemp = TextComponent();
@@ -34,14 +34,14 @@ class JumpKing extends FlameGame
   @override
   FutureOr<void> onLoad() async {
     final textStyle = TextStyle(
-        color: BasicPalette.white.color, fontSize: 30, fontFamily: 'Karma');
+        color: BasicPalette.white.color, fontSize: 25, fontFamily: 'Karma');
     attemp.priority = 5;
     attemp
       ..text = 'Attempts: 1'
       ..textRenderer = TextPaint(
         style: textStyle,
       )
-      ..position = Vector2(0, 0);
+      ..position = Vector2(10, 10);
     player.onAttemptsChanged = (attemps) {
       attemp.text = 'Attempts: $attemps';
     };

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="254">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="255">
  <tileset firstgid="1" source="JumpkingPortrait.tsx"/>
  <layer id="1" name="Tile Layer 1" width="23" height="300">
   <data encoding="csv">
@@ -10,7 +10,7 @@
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
-113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
+113,0,0,0,0,23,24,24,24,13,14,14,15,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
 113,0,0,0,0,23,24,24,24,24,24,24,24,24,24,24,24,25,0,0,0,0,111,
@@ -727,6 +727,7 @@
   <object id="251" type="Platform" x="315.875" y="3136.75" width="9.25" height="14.5"/>
   <object id="252" type="Platform" x="284.375" y="3103.75" width="9.25" height="14.5"/>
   <object id="253" type="Platform" x="315.375" y="3071.25" width="9.25" height="14.5"/>
+  <object id="254" x="144" y="112" width="64" height="16"/>
  </objectgroup>
  <objectgroup id="3" name="SpawnPoint">
   <object id="179" name="Player" type="Player" x="144" y="4592" width="32" height="32"/>
@@ -735,7 +736,7 @@
     <property name="offGoUp" type="float" value="295"/>
    </properties>
   </object>
-  <object id="210" name="Goal" type="Goal" x="161.5" y="75.5" width="32" height="32"/>
+  <object id="210" name="Goal" type="Goal" x="160" y="80" width="32" height="32"/>
   <object id="212" type="ThuyTinh" x="16" y="4704" width="32" height="32"/>
  </objectgroup>
 </map>

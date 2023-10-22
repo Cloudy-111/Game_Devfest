@@ -75,6 +75,8 @@ flutter:
     - assets/images/Main Characters/Pink Man/
     - assets/images/Main Characters/Virtual Guy/
     - assets/images/Main Characters/SonTinh/
+    - assets/images/Main Characters/ThuyTinh/
+    - assets/images/Main Characters/MiNuong/
     - assets/images/Background/
   fonts: 
       - family: Karma

@@ -104,7 +104,7 @@ class Player extends SpriteAnimationGroupComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Saw || other is Enemy) {
+    if (other is Saw) {
       if (!game.playSound) {
         FlameAudio.play('hitHurt.wav', volume: game.soundVolume);
       }
@@ -323,7 +323,6 @@ class Player extends SpriteAnimationGroupComponent
 
   void _respawn() async {
     position = startingPosition;
-    //Saw.moveSpeed = 0;
     //current = PlayerState.disappearing;
     velocity = Vector2.zero();
     hasDie = true;

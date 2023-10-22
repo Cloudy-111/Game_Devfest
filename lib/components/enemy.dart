@@ -19,7 +19,7 @@ class Enemy extends SpriteAnimationComponent with HasGameRef<JumpKing> {
   @override
   FutureOr<void> onLoad() {
     priority = 1;
-    debugMode = true;
+    debugMode = false;
     // Sửa lại animation sau
     animation = _spriteAnimation('Idle', 11);
     add(RectangleHitbox());

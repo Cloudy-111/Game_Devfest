@@ -19,7 +19,7 @@ class Saw extends SpriteAnimationComponent
           size: size,
         );
   static const stepTime = 0.1;
-  static int moveSpeed = 17;
+  static double moveSpeed = 17;
   bool isGameInit = false;
   bool isWin = false;
 
@@ -66,6 +66,7 @@ class Saw extends SpriteAnimationComponent
     }
     isGameInit = false;
     position = startingPosition;
+    moveSpeed = 0;
     gameRef.thuyTinh.position = gameRef.thuyTinh.startPosition;
   }
 

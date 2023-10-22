@@ -104,7 +104,7 @@ class Player extends SpriteAnimationGroupComponent
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Saw || other is Enemy) {
+    if (other is Saw) {
       (game as JumpKing).onLose();
       _respawn();
       increaseAttemp();

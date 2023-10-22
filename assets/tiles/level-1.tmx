@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="213">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="23" height="300" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="254">
  <tileset firstgid="1" source="JumpkingPortrait.tsx"/>
  <layer id="1" name="Tile Layer 1" width="23" height="300">
   <data encoding="csv">
@@ -415,43 +415,13 @@
   <object id="113" type="Platform" x="16" y="3792" width="48" height="16"/>
   <object id="114" type="Platform" x="48" y="4240" width="48" height="16"/>
   <object id="115" type="Platform" x="48" y="4192" width="48" height="16"/>
-  <object id="118" type="Platform" x="272" y="1312" width="32" height="16"/>
-  <object id="119" type="Platform" x="304" y="1360" width="32" height="16"/>
-  <object id="120" type="Platform" x="272" y="1808" width="32" height="16"/>
-  <object id="121" type="Platform" x="304" y="1856" width="32" height="16"/>
-  <object id="122" type="Platform" x="64" y="2000" width="32" height="16"/>
-  <object id="123" type="Platform" x="32" y="2048" width="32" height="16"/>
-  <object id="124" type="Platform" x="304" y="2272" width="32" height="16"/>
-  <object id="125" type="Platform" x="272" y="2304" width="32" height="16"/>
-  <object id="126" type="Platform" x="304" y="2336" width="32" height="16"/>
-  <object id="127" type="Platform" x="304" y="2528" width="32" height="16"/>
-  <object id="128" type="Platform" x="272" y="2560" width="32" height="16"/>
-  <object id="129" type="Platform" x="304" y="2592" width="32" height="16"/>
-  <object id="130" type="Platform" x="304" y="2816" width="32" height="16"/>
-  <object id="131" type="Platform" x="272" y="2848" width="32" height="16"/>
-  <object id="132" type="Platform" x="304" y="2880" width="32" height="16"/>
-  <object id="133" type="Platform" x="304" y="3072" width="32" height="16"/>
-  <object id="134" type="Platform" x="272" y="3104" width="32" height="16"/>
-  <object id="135" type="Platform" x="304" y="3136" width="32" height="16"/>
-  <object id="136" type="Platform" x="304" y="3392" width="32" height="16"/>
-  <object id="137" type="Platform" x="32" y="3584" width="32" height="16"/>
-  <object id="138" type="Platform" x="304" y="3888" width="32" height="16"/>
   <object id="139" type="Platform" x="311.25" y="4384" width="16.75" height="16"/>
-  <object id="140" type="Platform" x="32" y="4384" width="32" height="16"/>
-  <object id="141" type="Platform" x="32" y="4512" width="32" height="16"/>
-  <object id="142" type="Platform" x="48" y="4576" width="32" height="16"/>
   <object id="144" type="Platform" x="296" y="4576" width="15.75" height="16"/>
   <object id="145" type="Platform" x="312" y="4512" width="16.75" height="16"/>
   <object id="146" x="112" y="2048" width="16" height="16"/>
   <object id="147" x="48" y="1936" width="16" height="16"/>
   <object id="148" x="240" y="1856" width="16" height="16"/>
   <object id="149" x="240" y="1360" width="16" height="16"/>
-  <object id="150" type="Platform" x="304" y="416" width="32" height="16"/>
-  <object id="151" type="Platform" x="272" y="448" width="32" height="16"/>
-  <object id="152" type="Platform" x="304" y="480" width="32" height="16"/>
-  <object id="153" type="Platform" x="304" y="672" width="32" height="16"/>
-  <object id="154" type="Platform" x="272" y="704" width="32" height="16"/>
-  <object id="155" type="Platform" x="304" y="736" width="32" height="16"/>
   <object id="156" x="0" y="4624" width="368" height="176"/>
   <object id="159" type="Platform" x="304" y="3616" width="48" height="16"/>
   <object id="160" type="Platform" x="304" y="3568" width="48" height="16"/>
@@ -722,6 +692,41 @@
   </object>
   <object id="207" x="224" y="3712" width="16" height="48"/>
   <object id="209" type="Platform" x="288.125" y="4352" width="16.75" height="16"/>
+  <object id="213" type="Platform" x="56" y="4576" width="15.75" height="16"/>
+  <object id="214" type="Platform" x="40" y="4512" width="15.75" height="16"/>
+  <object id="215" type="Platform" x="40" y="4384" width="15.75" height="16"/>
+  <object id="218" type="Platform" x="63.625" y="4351.5" width="15.75" height="16"/>
+  <object id="219" type="Platform" x="272" y="4240" width="48" height="16"/>
+  <object id="220" type="Platform" x="272" y="4192" width="48" height="16"/>
+  <object id="221" type="Platform" x="312.625" y="3886.5" width="15.75" height="16"/>
+  <object id="222" type="Platform" x="40.625" y="3582" width="15.75" height="16"/>
+  <object id="223" type="Platform" x="312.625" y="3392" width="15.75" height="16"/>
+  <object id="226" type="Platform" x="40.625" y="2047.5" width="15.75" height="16"/>
+  <object id="227" type="Platform" x="72.125" y="1998.5" width="15.75" height="16"/>
+  <object id="228" type="Platform" x="280.125" y="1806.5" width="15.75" height="16"/>
+  <object id="229" type="Platform" x="311.625" y="1854" width="15.75" height="16"/>
+  <object id="232" type="Platform" x="305.125" y="1743.5" width="15.75" height="16"/>
+  <object id="233" type="Platform" x="312.625" y="1358.5" width="15.75" height="16"/>
+  <object id="234" type="Platform" x="279.625" y="1311" width="15.75" height="16"/>
+  <object id="235" type="Platform" x="305.125" y="1247.5" width="15.75" height="16"/>
+  <object id="236" type="Platform" x="316.125" y="416" width="9.25" height="14.5"/>
+  <object id="237" type="Platform" x="284.375" y="446.25" width="9.25" height="14.5"/>
+  <object id="238" type="Platform" x="315.375" y="478.25" width="9.25" height="14.5"/>
+  <object id="239" type="Platform" x="315.875" y="671.25" width="9.25" height="14.5"/>
+  <object id="240" type="Platform" x="316.375" y="735.75" width="9.25" height="14.5"/>
+  <object id="241" type="Platform" x="283.875" y="703.25" width="9.25" height="14.5"/>
+  <object id="242" type="Platform" x="316.375" y="2271.25" width="9.25" height="14.5"/>
+  <object id="243" type="Platform" x="283.375" y="2302.75" width="9.25" height="14.5"/>
+  <object id="244" type="Platform" x="315.875" y="2335.75" width="9.25" height="14.5"/>
+  <object id="245" type="Platform" x="316.375" y="2527.75" width="9.25" height="14.5"/>
+  <object id="246" type="Platform" x="315.375" y="2591.25" width="9.25" height="14.5"/>
+  <object id="247" type="Platform" x="284.375" y="2557.75" width="9.25" height="14.5"/>
+  <object id="248" type="Platform" x="314.875" y="2814.75" width="9.25" height="14.5"/>
+  <object id="249" type="Platform" x="316.375" y="2878.75" width="9.25" height="14.5"/>
+  <object id="250" type="Platform" x="284.375" y="2846.25" width="9.25" height="14.5"/>
+  <object id="251" type="Platform" x="315.875" y="3136.75" width="9.25" height="14.5"/>
+  <object id="252" type="Platform" x="284.375" y="3103.75" width="9.25" height="14.5"/>
+  <object id="253" type="Platform" x="315.375" y="3071.25" width="9.25" height="14.5"/>
  </objectgroup>
  <objectgroup id="3" name="SpawnPoint">
   <object id="179" name="Player" type="Player" x="160" y="4592" width="32" height="32"/>

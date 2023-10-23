@@ -29,13 +29,9 @@ class Player extends SpriteAnimationGroupComponent
   bool isWin;
   Player({
     position,
-<<<<<<< HEAD
     this.character = 'Son_Tinh',
-=======
-    this.character = 'Pink Man',
     this.attemps = 1,
     this.isWin = false,
->>>>>>> origin
   }) : super(position: position);
   //constructor nhan 1 chuoi, thuoc tinh position duoc ke thua tu lop cha
 

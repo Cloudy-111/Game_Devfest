@@ -9,7 +9,7 @@ class JumpButton extends SpriteComponent
   JumpButton();
 
   final margin = 32;
-  final buttonSize = 64;
+  final buttonSize = 80;
 
   @override
   FutureOr<void> onLoad() {

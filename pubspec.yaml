@@ -78,6 +78,8 @@ flutter:
     - assets/images/Main Characters/Son_Tinh/
 =======
     - assets/images/Main Characters/SonTinh/
+    - assets/images/Main Characters/ThuyTinh/
+    - assets/images/Main Characters/MiNuong/
     - assets/images/Background/
   fonts: 
       - family: Karma

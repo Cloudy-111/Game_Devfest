@@ -83,6 +83,9 @@ flutter:
       - family: Karma
         fonts:
           - asset: assets/font/karma/Karma Future.otf
+      - family: K1
+        fonts:
+         - asset: assets/font/karmatic-arcade/ka1.ttf
 
 
   # To add assets to your application, add an assets section, like this:

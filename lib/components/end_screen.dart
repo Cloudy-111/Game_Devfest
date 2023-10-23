@@ -14,7 +14,10 @@ class EndScreen extends StatelessWidget {
           heightFactor: 1, // Tỷ lệ chiều cao của khung
           child: Container(
             decoration: BoxDecoration(
-              color: Color(0xFF211F30),
+              image: DecorationImage(
+                image: Image.asset('assets/images/Background/start_background.png').image,
+                fit: BoxFit.fill,
+              ),
               border: Border.all(color: Colors.black, width: 2.0),
               borderRadius: BorderRadius.circular(10.0),
             ),
@@ -23,16 +26,34 @@ class EndScreen extends StatelessWidget {
               children: [
                 Text(
                   'Game Over',
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(
+                      fontSize: 32,
+                      fontFamily: 'K1',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                  ),
                 ),
-                SizedBox(height: 20),
-                ElevatedButton(
+                SizedBox(height: 40),
+                TextButton(
                   onPressed: onPlayAgain,
-                  child: Text('Play Again'),
+                  child: Text(
+                      'Play Again',
+                    style: TextStyle(
+                      fontFamily: 'K1',
+                      fontSize: 18,
+                    )
+                  ),
                 ),
-                ElevatedButton(
+                SizedBox(height: 10),
+                TextButton(
                   onPressed: onBackToMain,
-                  child: Text('Back to Main'),
+                  child: Text(
+                      'Back to Main Menu',
+                      style: TextStyle(
+                        fontFamily: 'K1',
+                        fontSize: 18,
+                      )
+                  ),
                 ),
               ],
             ),

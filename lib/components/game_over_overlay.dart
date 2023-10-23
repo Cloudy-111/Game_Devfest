@@ -10,52 +10,50 @@ class GameOverOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Theme.of(context).colorScheme.background,
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(48.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const Text(
-                'Game Over',
-                // style: Theme.of(context).textTheme.displayMedium!.copyWith(),
-                style: TextStyle(
-                  fontFamily: 'Karma',
-                  fontSize: 30,
-                ),
+    return Scaffold(
+      body: Center(
+        child: FractionallySizedBox(
+          widthFactor: 1, // Tỷ lệ chiều rộng của khung
+          heightFactor: 1, // Tỷ lệ chiều cao của khung
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: Image.asset('assets/images/Background/start_background.png').image,
+                fit: BoxFit.cover,
               ),
-              // const WhiteSpace(height: 50),
-              // ScoreDisplay(
-              //   game: game,
-              //   isLight: true,
-              // ),
-              // const WhiteSpace(
-              //   height: 50,
-              // ),
-              ElevatedButton(
-                onPressed: () {
-                  (game as JumpKing).resetGame();
-                  Saw.moveSpeed = 17;
-                },
-                style: ButtonStyle(
-                  minimumSize: MaterialStateProperty.all(
-                    const Size(200, 75),
-                  ),
-                  textStyle: MaterialStateProperty.all(
-                      Theme.of(context).textTheme.titleLarge),
-                ),
-                child: const Text(
-                  'Play Again',
+              border: Border.all(color: Colors.black, width: 2.0),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Game Over',
                   style: TextStyle(
-                    fontFamily: 'Karma',
-                    fontSize: 25,
+                    fontSize: 48,
+                    fontFamily: 'K1',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 40),
+                TextButton(
+                  onPressed: (){
+                    (game as JumpKing).resetGame();
+                    Saw.moveSpeed = 17;
+                  },
+                  child: Text(
+                      'Play Again',
+                      style: TextStyle(
+                        fontFamily: 'K1',
+                        fontSize: 18,
+                        color: Colors.white,
+                      )
+                  ),
+                ),
+                SizedBox(height: 10),
+              ],
+            ),
           ),
         ),
       ),

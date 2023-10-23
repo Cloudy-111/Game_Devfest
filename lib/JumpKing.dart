@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:first_flutter_prj/components/saw.dart';
 import 'package:flame/palette.dart';
-
 import 'package:first_flutter_prj/components/Goal.dart';
 import 'package:first_flutter_prj/components/jump_button.dart';
 import 'package:first_flutter_prj/components/player.dart';
@@ -13,6 +12,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/painting.dart';
+import 'package:flame/parallax.dart';
 
 class JumpKing extends FlameGame
     with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection {
@@ -33,6 +33,19 @@ class JumpKing extends FlameGame
 
   @override
   FutureOr<void> onLoad() async {
+      final ParallaxComponent background = await loadParallaxComponent([
+        ParallaxImageData('Background/layer-1.png'),
+        ParallaxImageData('Background/layer-2.png'),
+        ParallaxImageData('Background/layer-3.png'),
+        ParallaxImageData('Background/layer-4.png'),
+        ParallaxImageData('Background/layer-5.png'),
+        ParallaxImageData('Background/layer-6.png'),
+      ],
+          fill: LayerFill.height,
+          baseVelocity: Vector2(10, 0),
+          velocityMultiplierDelta: Vector2(1.6, 1.0)
+      );
+      add(background);
     final textStyle = TextStyle(
         color: BasicPalette.white.color, fontSize: 25, fontFamily: 'Karma');
     attemp.priority = 5;

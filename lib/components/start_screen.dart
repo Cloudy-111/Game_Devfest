@@ -3,6 +3,7 @@ import 'package:first_flutter_prj/components/game_over_overlay.dart';
 import 'package:first_flutter_prj/components/win_overlay.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/animation.dart';
 
 class StartScreen extends StatelessWidget {
   @override
@@ -29,17 +30,25 @@ class StartScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Welcome to JumpKing',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontFamily: 'Karma',
-                  ),
-                ),
+               AnimatedContainer(
+                 duration: Duration(seconds: 12),
+
+                 child: Container(
+                   width: 450,
+                   height: 300,
+                   decoration: BoxDecoration(
+                       image: DecorationImage(
+                         image: Image.asset(
+                           'assets/images/HUD/Menu_frame (450x300).png',
+                           width: 450,
+                           height: 300,
+                         ).image,
+                       )
+                   ),
+                 ),
+               ),
                 const SizedBox(height: 20),
-                ElevatedButton(
+                TextButton(
                   onPressed: () {
                     final game = JumpKing();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -55,10 +64,11 @@ class StartScreen extends StatelessWidget {
                     ));
                   },
                   child: const Text(
-                    'Start Game',
+                    'Start Game!',
                     style: TextStyle(
-                      fontSize: 25,
-                      fontFamily: 'Karma',
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontFamily: 'K1',
                     ),
                   ),
                 ),

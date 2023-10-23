@@ -29,7 +29,7 @@ class Player extends SpriteAnimationGroupComponent
   bool isWin;
   Player({
     position,
-    this.character = 'Pink Man',
+    this.character = 'Son_Tinh',
     this.attemps = 1,
     this.isWin = false,
   }) : super(position: position);
